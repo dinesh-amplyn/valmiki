@@ -62,7 +62,8 @@ const LoginAuth = ({ navigation }) => {
             {errors && <Text style={{ color: "red" }}> {errors.mobile}</Text>}
             <TouchableOpacity onPress={storeData} style={{ borderWidth: 0, backgroundColor: "rgb(125,226,78)", marginTop: 10, marginHorizontal: s(100), alignItems: "center", justifyContent: "center", height: 50 }}>
                 <Text style={{ fontSize: 18, color: "white" }}>Submit</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> 
+            
             <View style={styles.termContainer}>
                 <TouchableOpacity onPress={() => navigation.navigate("TramConditon")}>
                     <Text style={{ fontSize: 17, color: "white" }}> Term & Conditions</Text>
