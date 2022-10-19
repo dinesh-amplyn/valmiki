@@ -28,6 +28,7 @@ const AayojanPage = ({ navigation, route }) => {
     const [id, setId] = useState()
     const [selectdata, setSelectdata] = useState([])
     const [isModalVisible, setModalVisible] = useState(false);
+    const {values} = route.params
 
     useEffect(() => {
         if (route && route.params) {
@@ -60,6 +61,28 @@ const AayojanPage = ({ navigation, route }) => {
                 console.log("response::::", response)
                 if (response.status) {
                     navigation.navigate("AayojanTab")
+                }
+            }).catch(error => {
+                alert(error.message);
+            });
+    }
+    const updateimage = () => {
+        let data = new FormData();
+        data.append('images', {
+            name: image.modificationDate + '.jpg',
+            type: image.mime,
+            uri: Platform.OS === 'ios' ? image.path.replace('file://', '') : image.path,
+        });
+        console.log("imagedata::::::::::::::::", JSON.stringify(data))
+        // data.append('user_id', userData.user.id);
+        data.append('event_id', values.id);
+        ApisService.eventsupdateimage(data)
+            .then(response => {
+                console.log("response::::", response)
+                if (response.status) {
+                    // navigation.navigate("AayojanTab")
+                    updatenews()
+
                 }
             }).catch(error => {
                 alert(error.message);
@@ -106,7 +129,7 @@ const AayojanPage = ({ navigation, route }) => {
     }
     const publisevent = () => {
         if (route && route.params) {
-            updatenews()
+            updateimage()
         }
         else {
             publisdata()
@@ -114,11 +137,11 @@ const AayojanPage = ({ navigation, route }) => {
     }
     const handeldata = (e) => {
         let dataitem = [...selectdata]
-        let index =selectdata.findIndex(item=>item==e)
-        if(index==-1){
+        let index = selectdata.findIndex(item => item == e)
+        if (index == -1) {
             dataitem.push(e)
             console.log("dataitem", dataitem)
-        }else{
+        } else {
             dataitem.splice(index, 1)
         }
         setSelectdata(dataitem)
@@ -188,16 +211,16 @@ const AayojanPage = ({ navigation, route }) => {
                         <>
                             <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600", marginTop: 15 }} >private Invitations*</Text>
                             <TouchableOpacity style={{ borderWidth: 1, flexDirection: "row", paddingHorizontal: 20, height: 40, borderRadius: 10, marginTop: 10, borderColor: "#ccc" }} onPress={() => setModalVisible(true)} >
-                                
-                                {selectdata.length<1?<Text style={{ alignSelf: "center", fontSize: 18 }}>selecte user </Text>:
-                                <>
-                                {selectdata.map((item) => (
-                                    <Text>{item}</Text>
-                                ))}
-                                </>
+
+                                {selectdata.length < 1 ? <Text>selecte user </Text> :
+                                    <>
+                                        {selectdata.map((item) => (
+                                            <Text style={{ alignSelf: "center", fontSize: 18, textAlign: "center" }}>{item}</Text>
+                                        ))}
+                                    </>
                                 }
                             </TouchableOpacity>
-                            <EventMulti handeldata={handeldata} selectdata={selectdata} isModalVisible={isModalVisible} setModalVisible={setModalVisible}/>
+                            <EventMulti handeldata={handeldata} selectdata={selectdata} isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
                         </>
                     }
 

@@ -17,10 +17,10 @@ const AllDetail = ({ route, navigation }) => {
     const dataview = () => {
         ApisService.announcementdeatil(Announcedata)
             .then(response => {
-                console.log('response::::', response)
+                // console.log('response::::', response)
                 if (response.status) {
                     setData(response.data)
-                    console.log("response.data", response.data)
+                    // console.log("response.data", response.data)
                 }
             }).catch(error => {
                 alert(error.message);
@@ -33,10 +33,10 @@ const AllDetail = ({ route, navigation }) => {
         }
         ApisService.announcementdelete(data)
             .then(response => {
-                console.log('response::::', response)
+                // console.log('response::::', response)
                 if (response.status) {
                     // setData(response.data)
-                    console.log("response.data", response.data)
+                    // console.log("response.data", response.data)
                 }
             }).catch(error => {
                 alert(error.message);
@@ -104,6 +104,9 @@ const AllDetail = ({ route, navigation }) => {
                         </TouchableOpacity>
                     </>
                 }
+                {data.user_id !== userData.user.id&&<TouchableOpacity onPress={() => navigation.navigate("Report", { values: data })} style={{ marginLeft: "auto", marginRight: 15, borderWidth: 0, backgroundColor: "#ffd470", borderRadius: 10, padding: 5 }}>
+                    <Text style={{ fontSize: 22, color: "#fff", fontWeight: "600" }}>REPORT</Text>
+                </TouchableOpacity>}
             </View>
 
         </ScrollView>

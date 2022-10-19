@@ -75,9 +75,10 @@ const UserNews = ({ navigation }) => {
     const setHeader = () => {
         navigation.setOptions({
             title: 'समाचार/ विचार ',
-            headerTitleAlign: 'center',
+            headerTitleAlign: 'left',
             headerStyle: {
-                backgroundColor: '#ffd470'
+                backgroundColor: '#ffd470',
+            
             },
             headerLeft: () => (
                 <View>
@@ -110,23 +111,25 @@ const UserNews = ({ navigation }) => {
     }
     return (
         <View style={styles.container}>
+            <View style={{backgroundColor:"#ffd470"}}>
             <View style={styles.inercontainer}>
+            <Ionicons name="search" size={s(25)} color='black'  />
                 < TextInput
-                    style={styles.inputcontainer}
+                    // style={styles.inputcontainer}
                     autoCapitalize="none"
                     multiline={true}
                     onChangeText={(e) => setSearchitem(e)}
                     placeholderTextColor="black"
                     placeholder="Search Contact"
-
                 />
+                </View>
             </View>
             < FlatList
                 data={data}
                 renderItem={({ item }) => (<Source item={item} data={data} />)}
                 showsHorizontalScrollIndicator={false}
             />
-            <TouchableOpacity onPress={() => navigation.navigate("CreatePost")} style={{ position: "absolute", bottom: 50, right: 50 }}>
+            <TouchableOpacity onPress={() => navigation.navigate("CreatePost")} style={{ position: "absolute", bottom: 35, right: 30 }}>
                 <Fontisto style={styles.arrowIcon} name={"plus-a"} size={s(50)} color="white" />
             </TouchableOpacity>
         </View>
@@ -137,9 +140,16 @@ const styles = StyleSheet.create({
         flex: 1
     },
     inercontainer: {
-        flexDirection: "row",
-        justifyContent: "space-around",
         marginTop: s(10),
+        borderWidth: 1,
+        borderColor: "#aaa",
+        backgroundColor: "#fff",
+        width: "90%",
+        alignItems: "center",
+        fontWeight: "600",
+        fontSize: 17,
+        flexDirection:"row",
+        marginLeft:23,
     },
     textcontainer: {
         marginTop: s(10),

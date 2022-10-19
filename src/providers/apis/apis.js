@@ -116,6 +116,9 @@ export const eventsdelete = (params) => {
 export const eventsupdate = (params) => {
     return axios.post(`/api/events/update`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
 }
+export const eventsupdateimage = (params) => {
+    return axios.post(`/api/events/update-image`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
 export const userslisting = (params) => {
     return axios.get(`/api/users/listing`, params).then(response => readResponse(response)).catch(error => { throw readError(error); });
 }

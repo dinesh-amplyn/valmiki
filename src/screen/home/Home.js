@@ -51,7 +51,6 @@ const Home = ({ navigation }) => {
             user_id: userData.user.id,
             description: discription,
         }
-        setLoader(true)
         // console.log("data", data)
         ApisService.sharepost(data)
             .then(response => {
@@ -59,10 +58,7 @@ const Home = ({ navigation }) => {
                 setDiscription(null)
                 flatlistRef.current.clear()
                 if (response.status) {
-                    setTimeout(() => {
-                        setLoader(false)
-                        setShowData(!showData)
-                    }, 1000);
+                    setShowData(!showData)
                 }
             }).catch(error => {
                 alert(error.message);

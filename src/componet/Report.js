@@ -9,20 +9,20 @@ const Report = ({route,navigation}) => {
     const userData = useSelector(state => state.userData)
     const [discription, setDiscription] = useState()
     const [data, setData] = useState();
-    // const [isSelected, setIsSelected] = useState("news")
+    const [isSelected, setIsSelected] = useState("type")
 
     const Submitdata = () => {
         let data={
             user_id:userData.user.id,
             description:discription,
             action_id:values.id,
-            action_type:values.news_type
+            action_type:isSelected
         }
         ApisService.CreateReport(data)
             .then(response => {
                 console.log('response::::', response)
                 if (response.status) {
-                    navigation.navigate("UserNews")
+                    navigation.goBack()
                 }
             }).catch(error => {
                 alert(error.message);
