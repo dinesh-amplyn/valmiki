@@ -1,66 +1,66 @@
 [
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_launch_screen.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-mdpi\\launch_screen.png"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_launch_screen.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-hdpi\\launch_screen.png"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_launch_screen.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-xhdpi\\launch_screen.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_launch_screen.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-hdpi\\launch_screen.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_launch_screen.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\launch_screen.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_launch_screen.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\launch_screen.png"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\layout_launch_screen.xml.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\layout\\launch_screen.xml"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_launch_screen.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\launch_screen.png"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_launch_screen.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-mdpi\\launch_screen.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\layout_launch_screen.xml.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\layout\\launch_screen.xml"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_launch_screen.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\launch_screen.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_launch_screen.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-xhdpi\\launch_screen.png"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
     },
     {
-        "merged": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "C:\\lab2\\valmiki\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+        "merged": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\merged_res\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\lab2\\Valmiki\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
     }
 ]

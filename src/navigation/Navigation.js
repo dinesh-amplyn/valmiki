@@ -66,6 +66,7 @@ const Navigation = () => {
             <Stack.Screen name="AayojanTab" component={AayojanTab} />
             <Stack.Screen name="AllDetail" component={AllDetail} />
             <Stack.Screen name="EventDatile" component={EventDatile} />
+            <Stack.Screen name="AayojanPage" component={AayojanPage} />
             <Stack.Screen name="Home" component={Home} options={{
               headerStyle: {
                 backgroundColor: '#ffd470',

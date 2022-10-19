@@ -56,8 +56,9 @@ const Home = ({ navigation }) => {
         ApisService.sharepost(data)
             .then(response => {
                 // console.log("response::::", response)
+                setDiscription(null)
+                flatlistRef.current.clear()
                 if (response.status) {
-                    flatlistRef.current.clear()
                     setTimeout(() => {
                         setLoader(false)
                         setShowData(!showData)

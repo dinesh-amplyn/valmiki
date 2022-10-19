@@ -26,7 +26,6 @@ const Past = ({ navigation }) => {
                 if (response.status) {
                     setData(response.data)
                     console.log("response.status", response.status)
-                    // setFilter(response.data)
                     console.log("response.data", response.data)
                 }
             }).catch(error => {

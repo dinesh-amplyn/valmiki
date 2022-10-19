@@ -107,3 +107,15 @@ export const eventscreate = (params) => {
 export const eventslisting = (params) => {
     return axios.get(`/api/events/listing`, params).then(response => readResponse(response)).catch(error => { throw readError(error); });
 }
+export const eventsdetails = (id) => {
+    return axios.get(`/api/events/details/${id}`).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const eventsdelete = (params) => {
+    return axios.post(`/api/events/delete`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const eventsupdate = (params) => {
+    return axios.post(`/api/events/update`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const userslisting = (params) => {
+    return axios.get(`/api/users/listing`, params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}

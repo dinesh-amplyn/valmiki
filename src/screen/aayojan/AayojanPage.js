@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { KeyboardAvoidingView, Platform, View, Switch, StyleSheet, Text, StatusBar, Image, Button, Dimensions, TouchableOpacity, TextInput } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import Fontisto from 'react-native-vector-icons/Fontisto'
@@ -9,9 +9,10 @@ import { ScrollView } from "react-native-gesture-handler";
 import EventType from "../../componet/EventType";
 import DatePicker from 'react-native-date-picker'
 import { getCurrentDateTime, formatedDateTime } from "../../providers/global/global";
+import EventMulti from "../../componet/EventMulti";
 const datee = new Date()
 
-const AayojanPage = ({ navigation }) => {
+const AayojanPage = ({ navigation, route }) => {
 
     const userData = useSelector(state => state.userData)
     const [image, setImage] = useState(null)
@@ -24,9 +25,44 @@ const AayojanPage = ({ navigation }) => {
     const [paikerdata, setPaikerdata] = useState(false)
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
-
-    const [isEnabled, setIsEnabled] = useState(false);
-    // const [isswitch, setSwitech] = useState(false)
+    const [id, setId] = useState()
+    useEffect(() => {
+        if (route && route.params) {
+            const { title, description, image, address, is_public, id, start_date_time, end_date_time, event_type } = route.params.values
+            setTitle(title)
+            setDiscription(description)
+            setImage({ path: image })
+            // setAuthor(owner_name)
+            setIsSelected(is_public)
+            setStartDate(start_date_time)
+            setEndDate(end_date_time)
+            setIndicator(event_type)
+            setAddress(address)
+            setId(id)
+        }
+    }, [])
+    const updatenews = () => {
+        let data = {
+            user_id: userData.user.id,
+            title: title,
+            description: discription,
+            address: address,
+            is_public: isSelected,
+            id: id,
+            start_date_time: startDate,
+            end_date_time: endDate,
+            event_type: indicator
+        }
+        ApisService.eventsupdate(data)
+            .then(response => {
+                console.log("response::::", response)
+                if (response.status) {
+                    navigation.navigate("AayojanTab")
+                }
+            }).catch(error => {
+                alert(error.message);
+            });
+    }
     const publisdata = () => {
         let data = new FormData();
         data.append('image', {
@@ -66,6 +102,14 @@ const AayojanPage = ({ navigation }) => {
             console.log(image);
         });
     }
+    const publisevent = () => {
+        if (route && route.params) {
+            updatenews()
+        }
+        else {
+            publisdata()
+        }
+    }
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -93,7 +137,7 @@ const AayojanPage = ({ navigation }) => {
                         autoCapitalize="none"
                         onChangeText={(e) => setTitle(e)}
                         placeholderTextColor="black"
-
+                        value={title}
                     />
                     <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600" }}>Address*</Text>
                     < TextInput
@@ -102,6 +146,7 @@ const AayojanPage = ({ navigation }) => {
                         autoCapitalize="none"
                         onChangeText={(e) => setAddress(e)}
                         placeholderTextColor="black"
+                        value={address}
 
                     />
                     <Text style={styles.textcontainer}>Start Date*</Text>
@@ -118,12 +163,20 @@ const AayojanPage = ({ navigation }) => {
                             trackColor={{ false: "#767577", true: "#81b0ff" }}
                             thumbColor={isSelected ? "#f5dd4b" : "#f4f3f4"}
                             ios_backgroundColor="#3e3e3e"
-                            onValueChange={()=>setIsSelected(!isSelected)}
-                        value={isSelected}
+                            onValueChange={() => setIsSelected(!isSelected)}
+                            value={isSelected}
                         />
-                        {console.log("isSelected",isSelected)}
+                        {console.log("isSelected", isSelected)}
                     </View>
+
+                    {!isSelected &&
+                        <>
+                            <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600", marginTop: 15 }}>private Invitations*</Text>
+                            <EventMulti isSelected={isSelected}setIsSelected={setIsSelected}/>
+                        </>
+                    }
                     <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600", marginTop: 15 }}>Description(50-5000 charctors)*</Text>
+
                     < TextInput
                         style={styles.inputcontainer1}
                         placeholder="Tell us more about this event."
@@ -132,10 +185,11 @@ const AayojanPage = ({ navigation }) => {
                         onChangeText={(e) => setDiscription(e)}
                         placeholderTextColor="black"
                         maxLength={5000}
-                    />
+                        value={discription} />
+
                     <Text style={{ textAlign: "center", fontSize: 20, color: "black" }}>Upload more Attachment</Text>
 
-                    <TouchableOpacity onPress={() => publisdata()} style={{ alignSelf: "center", marginTop: 22 }}>
+                    <TouchableOpacity onPress={() => publisevent()} style={{ alignSelf: "center", marginTop: 22 }}>
                         <Text style={{ fontSize: 18, fontWeight: "500", borderColor: "#ccc", borderWidth: 1, paddingHorizontal: 12, paddingVertical: 5, borderRadius: 8, backgroundColor: "#ffd470" }}>ADD EVENT</Text>
                     </TouchableOpacity>
                 </View>
@@ -143,6 +197,8 @@ const AayojanPage = ({ navigation }) => {
                     modal
                     open={datepiker}
                     date={datee}
+                    value={startDate}
+
                     onConfirm={(date) => {
                         setStartDate(date)
                         setDatepiker(!datepiker)
@@ -156,6 +212,8 @@ const AayojanPage = ({ navigation }) => {
                     modal
                     open={paikerdata}
                     date={datee}
+                    value={endDate}
+
                     onConfirm={(date) => {
                         setEndDate(date)
                         setPaikerdata(!paikerdata)
@@ -209,6 +267,16 @@ const styles = StyleSheet.create({
         borderColor: "#ccc",
         width: "96%",
         paddingVertical: 50,
+        alignSelf: "center",
+        borderRadius: s(8),
+        backgroundColor: "#ffd470",
+        marginTop: 12
+    },
+    inputcontainer2: {
+        borderWidth: 1,
+        borderColor: "#ccc",
+        width: "96%",
+        // paddingVertical: 50,
         alignSelf: "center",
         borderRadius: s(8),
         backgroundColor: "#ffd470",

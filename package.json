@@ -28,6 +28,7 @@
     "react-native-gesture-handler": "^2.6.0",
     "react-native-htmlview": "^0.16.0",
     "react-native-image-crop-picker": "^0.38.0",
+    "react-native-multiple-select": "^0.5.11",
     "react-native-otp-auto-fill": "^0.1.17",
     "react-native-pager-view": "^6.0.0",
     "react-native-reanimated": "^2.8.0",

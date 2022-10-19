@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\lab2\\valmiki\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bg\\values-bg.xml",
+            "outputFile": "C:\\lab2\\Valmiki\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-bg\\values-bg.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Himanshu\\.gradle\\caches\\transforms-3\\45cdf3d9003203bd7d99a3752c1d90db\\transformed\\jetified-play-services-base-17.5.0\\res\\values-bg\\values.xml",
