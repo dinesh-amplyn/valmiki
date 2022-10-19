@@ -1,11 +1,11 @@
 import React from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity, TextInput, } from 'react-native';
 import { s } from "react-native-size-matters";
-const EventData = ({ item, navigation }) => (
-    <TouchableOpacity onPress={() => navigation.navigate("EventDatile", { EventData: item.id })} style={styles.newscontainer} >
+const EventData = ({ item, navigation,type }) => (
+    <TouchableOpacity onPress={() => navigation.navigate("EventDatile", { EventData: item.id,type })} style={styles.newscontainer} >
         <Image
             style={styles.imagecontener}
-            source={{ uri:  item.image.replace("localhost", "192.168.29.196") }} />
+            source={{ uri:item.image.replace("localhost", "192.168.29.196") }} />
         <View style={{ flexDirection: "row" }}>
             <Text style={styles.orderDetailsText}>{item.created_at}</Text>
             <View>

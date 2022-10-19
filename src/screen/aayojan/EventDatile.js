@@ -7,7 +7,7 @@ import * as ApisService from "../../providers/apis/apis";
 const EventDatile = ({ route, navigation }) => {
     const userData = useSelector(state => state.userData)
     const [data, setData] = useState({})
-    const { EventData } = route.params
+    const { EventData,type } = route.params
 
     useEffect(() => {
         dataview()
@@ -54,13 +54,16 @@ const EventDatile = ({ route, navigation }) => {
                 <Text style={{ fontSize: 15, color: "black", marginTop: 12, fontWeight: "500", marginBottom: 15 }}>Posted by: {data.owner_name}</Text>
                 <View style={{ flexDirection: "row", marginBottom: 10 }}>
                     <>
-                     {data.user_id == userData.user.id ? <TouchableOpacity onPress={() => navigation.navigate("AayojanPage", { values: data })} style={{ marginLeft: "auto", marginRight: 15, borderWidth: 0, backgroundColor: "#ffd470", borderRadius: 10, padding: 5 }}>
+                    {console.log("userData.user.id",userData.user.id)}
+                    {console.log("data.user_id ",data.user_id )}
+                    {console.log("type==",type )}
+                     {(data.user_id == userData.user.id) &&type=="upcoming" &&<TouchableOpacity onPress={() => navigation.navigate("AayojanPage", { values: data })} style={{ marginLeft: "auto", marginRight: 15, borderWidth: 0, backgroundColor: "#ffd470", borderRadius: 10, padding: 5 }}>
                 <Text style={{ fontSize: 22, color: "#fff", fontWeight: "600" }}>Edit</Text>
-            </TouchableOpacity> :
-                <TouchableOpacity onPress={() => navigation.navigate("Report", { values: data })} style={{ marginLeft: "auto", marginRight: 15, borderWidth: 0, backgroundColor: "#ffd470", borderRadius: 10, padding: 5 }}>
+            </TouchableOpacity> }
+                {data.user_id !== userData.user.id&&<TouchableOpacity onPress={() => navigation.navigate("Report", { values: data })} style={{ marginLeft: "auto", marginRight: 15, borderWidth: 0, backgroundColor: "#ffd470", borderRadius: 10, padding: 5 }}>
                     <Text style={{ fontSize: 22, color: "#fff", fontWeight: "600" }}>REPORT</Text>
                 </TouchableOpacity>}
-                {data.user_id == userData.user.id&&<TouchableOpacity onPress={() =>deletedata()} style={{  marginLeft: "auto", marginRight: 15, borderWidth: 0, backgroundColor: "#ffd470", borderRadius: 10, padding: 5 }}>
+                {(data.user_id == userData.user.id) &&type=="upcoming" &&<TouchableOpacity onPress={() =>deletedata()} style={{  marginLeft: "auto", marginRight: 15, borderWidth: 0, backgroundColor: "#ffd470", borderRadius: 10, padding: 5 }}>
                     <Text style={{ fontSize: 22, color: "#fff", fontWeight: "600" }}>Delete</Text>
                 </TouchableOpacity>}
                 </>

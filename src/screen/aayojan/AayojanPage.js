@@ -26,13 +26,15 @@ const AayojanPage = ({ navigation, route }) => {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [id, setId] = useState()
+    const [selectdata, setSelectdata] = useState([])
+    const [isModalVisible, setModalVisible] = useState(false);
+
     useEffect(() => {
         if (route && route.params) {
             const { title, description, image, address, is_public, id, start_date_time, end_date_time, event_type } = route.params.values
             setTitle(title)
             setDiscription(description)
             setImage({ path: image })
-            // setAuthor(owner_name)
             setIsSelected(is_public)
             setStartDate(start_date_time)
             setEndDate(end_date_time)
@@ -65,7 +67,7 @@ const AayojanPage = ({ navigation, route }) => {
     }
     const publisdata = () => {
         let data = new FormData();
-        data.append('image', {
+        data.append('images[]', {
             name: image.modificationDate + '.jpg',
             type: image.mime,
             uri: Platform.OS === 'ios' ? image.path.replace('file://', '') : image.path,
@@ -75,8 +77,8 @@ const AayojanPage = ({ navigation, route }) => {
         data.append('title', title);
         data.append('description', discription);
         data.append('address', address);
-        data.append("start_date_time", formatedDateTime(startDate, "YYYY-MM-DD").toString());
-        data.append("end_date_time", formatedDateTime(endDate, "YYYY-MM-DD").toString());
+        data.append("start_date_time", formatedDateTime(startDate).toString());
+        data.append("end_date_time", formatedDateTime(endDate).toString());
         data.append('is_public', isSelected);
         data.append('event_type', indicator);
 
@@ -109,6 +111,18 @@ const AayojanPage = ({ navigation, route }) => {
         else {
             publisdata()
         }
+    }
+    const handeldata = (e) => {
+        let dataitem = [...selectdata]
+        let index =selectdata.findIndex(item=>item==e)
+        if(index==-1){
+            dataitem.push(e)
+            console.log("dataitem", dataitem)
+        }else{
+            dataitem.splice(index, 1)
+        }
+        setSelectdata(dataitem)
+
     }
     return (
         <KeyboardAvoidingView
@@ -151,11 +165,11 @@ const AayojanPage = ({ navigation, route }) => {
                     />
                     <Text style={styles.textcontainer}>Start Date*</Text>
                     <TouchableOpacity style={{ paddingLeft: 20 }} onPress={() => setDatepiker(!datepiker)}>
-                        <Text style={styles.inertextcontainer}>{startDate ? formatedDateTime(startDate, "YYYY/MM/DD") : "Enter Start Date"}</Text>
+                        <Text style={styles.inertextcontainer}>{startDate ? formatedDateTime(startDate) : "Enter Start Date"}</Text>
                     </TouchableOpacity>
                     <Text style={styles.textcontainer}>End Date*</Text>
                     <TouchableOpacity style={{ paddingLeft: 20 }} onPress={() => setPaikerdata(!paikerdata)}>
-                        <Text style={styles.inertextcontainer}>{endDate ? formatedDateTime(endDate, "YYYY/MM/DD") : "Enter end Date"}</Text>
+                        <Text style={styles.inertextcontainer}>{endDate ? formatedDateTime(endDate) : "Enter end Date"}</Text>
                     </TouchableOpacity>
                     <View style={styles.containerSwitch}>
                         <Text style={{ fontSize: 19, color: "black", fontWeight: "600" }}>Public</Text>
@@ -166,17 +180,28 @@ const AayojanPage = ({ navigation, route }) => {
                             onValueChange={() => setIsSelected(!isSelected)}
                             value={isSelected}
                         />
-                        {console.log("isSelected", isSelected)}
-                    </View>
 
+                        {console.log("isSelected", isSelected)}
+
+                    </View>
                     {!isSelected &&
                         <>
-                            <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600", marginTop: 15 }}>private Invitations*</Text>
-                            <EventMulti isSelected={isSelected}setIsSelected={setIsSelected}/>
+                            <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600", marginTop: 15 }} >private Invitations*</Text>
+                            <TouchableOpacity style={{ borderWidth: 1, flexDirection: "row", paddingHorizontal: 20, height: 40, borderRadius: 10, marginTop: 10, borderColor: "#ccc" }} onPress={() => setModalVisible(true)} >
+                                
+                                {selectdata.length<1?<Text style={{ alignSelf: "center", fontSize: 18 }}>selecte user </Text>:
+                                <>
+                                {selectdata.map((item) => (
+                                    <Text>{item}</Text>
+                                ))}
+                                </>
+                                }
+                            </TouchableOpacity>
+                            <EventMulti handeldata={handeldata} selectdata={selectdata} isModalVisible={isModalVisible} setModalVisible={setModalVisible}/>
                         </>
                     }
-                    <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600", marginTop: 15 }}>Description(50-5000 charctors)*</Text>
 
+                    <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600", marginTop: 15 }}>Description(50-5000 charctors)*</Text>
                     < TextInput
                         style={styles.inputcontainer1}
                         placeholder="Tell us more about this event."
@@ -188,7 +213,6 @@ const AayojanPage = ({ navigation, route }) => {
                         value={discription} />
 
                     <Text style={{ textAlign: "center", fontSize: 20, color: "black" }}>Upload more Attachment</Text>
-
                     <TouchableOpacity onPress={() => publisevent()} style={{ alignSelf: "center", marginTop: 22 }}>
                         <Text style={{ fontSize: 18, fontWeight: "500", borderColor: "#ccc", borderWidth: 1, paddingHorizontal: 12, paddingVertical: 5, borderRadius: 8, backgroundColor: "#ffd470" }}>ADD EVENT</Text>
                     </TouchableOpacity>
@@ -198,7 +222,6 @@ const AayojanPage = ({ navigation, route }) => {
                     open={datepiker}
                     date={datee}
                     value={startDate}
-
                     onConfirm={(date) => {
                         setStartDate(date)
                         setDatepiker(!datepiker)
@@ -206,7 +229,7 @@ const AayojanPage = ({ navigation, route }) => {
                     onCancel={() => {
                         console.log("date")
                     }}
-                    mode={'date'}
+                    mode={"datetime"}
                 />
                 <DatePicker
                     modal
@@ -222,7 +245,7 @@ const AayojanPage = ({ navigation, route }) => {
                     onCancel={() => {
                         console.log("date")
                     }}
-                    mode={'date'}
+                    mode={"datetime"}
                 />
             </ScrollView>
         </KeyboardAvoidingView>

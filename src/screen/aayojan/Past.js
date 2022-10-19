@@ -35,7 +35,7 @@ const Past = ({ navigation }) => {
     return (
             < FlatList
                 data={data}
-                renderItem={({ item }) => (<EventData item={item} navigation={navigation}/>)}
+                renderItem={({ item }) => (<EventData item={item} navigation={navigation} type={"past"}    />)}
                 showsHorizontalScrollIndicator={false}
             />
     )

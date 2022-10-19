@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useLayoutEffect } from "react";
 import { RefreshControl, ActivityIndicator, SafeAreaView, View, Alert, FlatList, StyleSheet, Text, StatusBar, Image, Button, Dimensions, TouchableOpacity, TextInput, } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Upcoming from '../aayojan/Past';
-import Past from '../aayojan/Upcoming';
+import Upcoming from '../aayojan/Upcoming';
+import Past from '../aayojan/Past';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { NavigationContainer } from '@react-navigation/native';
 import { s } from "react-native-size-matters";

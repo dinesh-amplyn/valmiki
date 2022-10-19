@@ -8,7 +8,6 @@ import Fontisto from 'react-native-vector-icons/Fontisto'
 import Entypo from 'react-native-vector-icons/Entypo'
 import * as ApisService from "../providers/apis/apis";
 import DatePicker from 'react-native-date-picker'
-import ModalData from "../componet/ModalData";
 import DropDown from "../componet/DropDown";
 import DropModal from "../componet/DropModal";
 const DetailPage = ({ navigation, route }) => {
@@ -37,7 +36,7 @@ const DetailPage = ({ navigation, route }) => {
         if (route && route.params) {
             const { id, name_indicator, name, date_of_birth, date_of_death, condolence_message, native_village, event_name, event_datetime, event_place, mourning_family, mobiles } = route.params.values
             setIndicator(name_indicator)
-            console.log("name_indicator",name_indicator)
+            console.log("name_indicator", name_indicator)
             setName(name)
             setStartDate(date_of_birth)
             setEndDate(date_of_death)
@@ -62,15 +61,14 @@ const DetailPage = ({ navigation, route }) => {
         data.append('user_id', userData.user.id);
         data.append('name_indicator', indicator);
         data.append('name', name);
-        data.append("date_of_birth", formatedDateTime(startDate, "YYYY-MM-DD").toString());
-        data.append("date_of_death", formatedDateTime(endDate, "YYYY-MM-DD").toString());
+        data.append("date_of_birth", formatedDateTime(startDate).toString());
+        data.append("date_of_death", formatedDateTime(endDate).toString());
         data.append("condolence_message", condolenceMessage);
         data.append("native_village", village);
         data.append("event_name", eventName);
-        data.append("event_datetime", formatedDateTime(eventDate, "YYYY-MM-DD").toString());
+        data.append("event_datetime", formatedDateTime(eventDate).toString());
         data.append("event_place", eventPlace);
         data.append("mourning_family", mourningFamily);
-        // data.append("mobiles", number);
         for (let i = 0; i < number.length; i++) {
             data.append('mobiles[]', number[i].inputs)
         }
@@ -161,7 +159,7 @@ const DetailPage = ({ navigation, route }) => {
                     <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(40) }}>दिव्यगत का नाम*</Text>
                     <View style={{ flexDirection: "row", marginTop: 20, justifyContent: "space-evenly" }}>
                         <TouchableOpacity >
-                            <DropDown setIndicator={setIndicator} indicator={indicator}/>
+                            <DropDown setIndicator={setIndicator} indicator={indicator} />
                         </TouchableOpacity>
                         < TextInput
                             style={styles.inputcontainer}
@@ -174,11 +172,11 @@ const DetailPage = ({ navigation, route }) => {
                     </View >
                     <Text style={styles.textcontainer}>जन्म-दिवस*</Text>
                     <TouchableOpacity onPress={() => setDatepiker(!datepiker)} style={{ paddingLeft: 20 }}>
-                        <Text style={styles.inertextcontainer}>{startDate ? formatedDateTime(startDate, "YYYY/MM/DD") : "date of birth"}</Text>
+                        <Text style={styles.inertextcontainer}>{startDate ? formatedDateTime(startDate) : "date of birth"}</Text>
                     </TouchableOpacity>
                     <Text style={styles.textcontainer}>स्वर्गगमन*</Text>
                     <TouchableOpacity style={{ paddingLeft: 20 }} onPress={() => setPaikerdata(!paikerdata)}>
-                        <Text style={styles.inertextcontainer}>{endDate ? formatedDateTime(endDate, "YYYY/MM/DD") : "Date of death"}</Text>
+                        <Text style={styles.inertextcontainer}>{endDate ? formatedDateTime(endDate) : "Date of death"}</Text>
                     </TouchableOpacity>
                     <Text style={styles.textcontainer}>शोक संदेश*</Text>
                     <View style={{ paddingLeft: 20 }}>
@@ -212,7 +210,7 @@ const DetailPage = ({ navigation, route }) => {
                             </TouchableOpacity>
                             <Text style={styles.textcontainer}>दिनांक*</Text>
                             <TouchableOpacity onPress={() => setEventy(!eventy)} style={{ paddingLeft: 20 }}>
-                                <Text style={styles.inertextcontainer}>{eventDate ? formatedDateTime(eventDate, "YYYY/MM/DD HH:mm") : "event date"} </Text>
+                                <Text style={styles.inertextcontainer}>{eventDate ? formatedDateTime(eventDate) : "event date"} </Text>
                             </TouchableOpacity>
 
                             <Text style={styles.textcontainer}>पता*</Text>
@@ -279,12 +277,11 @@ const DetailPage = ({ navigation, route }) => {
                         onConfirm={(date) => {
                             setStartDate(date)
                             setDatepiker(!datepiker)
-
                         }}
                         onCancel={() => {
                             console.log("date")
                         }}
-                        mode={'datetime'}
+                        mode={"date"}
                     />
                     <DatePicker
                         modal
@@ -295,7 +292,6 @@ const DetailPage = ({ navigation, route }) => {
                         onConfirm={(date) => {
                             setEndDate(date)
                             setPaikerdata(!paikerdata)
-
                         }}
                         onCancel={() => {
                             console.log("date")
@@ -315,7 +311,7 @@ const DetailPage = ({ navigation, route }) => {
                         onCancel={() => {
                             console.log("date")
                         }}
-                        mode={'date'}
+                        mode={"datetime"}
                     />
                 </View>
                 {/* <DropDown visible={visible} setVisible={setVisible}/> */}

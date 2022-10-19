@@ -15,6 +15,8 @@ const Upcoming = ({ navigation }) => {
     const [loader, setLoader] = useState(false);
     const [community, setCommunity] = useState()
     const[image,setImage]=useState()
+    const [endDate, setEndDate] = useState();
+
     useEffect(() => {
         dataList()
     }, []);
@@ -23,7 +25,6 @@ const Upcoming = ({ navigation }) => {
         let data ={
             params:{
                 user_id:userData.user.id,
-                noimage:image
             }
         }
         ApisService.eventslisting(data)
@@ -43,7 +44,7 @@ const Upcoming = ({ navigation }) => {
     return (
             < FlatList
                 data={data}
-                renderItem={({ item }) => (<EventData item={item} data={data}navigation={navigation} />)}
+                renderItem={({ item }) => (<EventData item={item}  navigation={navigation} type={"upcoming"} />)}
                 showsHorizontalScrollIndicator={false}
             />
     )
