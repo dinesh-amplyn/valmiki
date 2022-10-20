@@ -119,6 +119,12 @@ export const eventsupdate = (params) => {
 export const eventsupdateimage = (params) => {
     return axios.post(`/api/events/update-image`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
 }
+export const announcementsupdateimage = (params) => {
+    return axios.post(`/api/announcements/update-image`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const newsupdateimage = (params) => {
+    return axios.post(`/api/news/update-image`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
 export const userslisting = (params) => {
     return axios.get(`/api/users/listing`, params).then(response => readResponse(response)).catch(error => { throw readError(error); });
 }

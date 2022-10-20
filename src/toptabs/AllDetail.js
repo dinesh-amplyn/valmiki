@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { KeyboardAvoidingView, SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, Image, Button, Dimensions, TouchableOpacity, TextInput } from 'react-native';
+import { View, FlatList, StyleSheet, Text, StatusBar, Image, Button, Dimensions, TouchableOpacity, TextInput } from 'react-native';
 import { ScrollView } from "react-native-gesture-handler";
 import { s } from "react-native-size-matters";
 import { useSelector } from "react-redux";
@@ -10,7 +10,6 @@ const AllDetail = ({ route, navigation }) => {
     const userData = useSelector(state => state.userData)
     const [data, setData] = useState({})
     const { Announcedata } = route.params
-
     useEffect(() => {
         dataview()
     }, []);
@@ -92,30 +91,29 @@ const AllDetail = ({ route, navigation }) => {
             <View style={styles.maincantainer}>
                 <Text style={{ fontSize: 18, color: "black", margin: 10, fontWeight: "bold" }}>posted by : {data.owner_name}</Text>
             </View>
-            <View style={{ flexDirection: "row",marginBottom:10 }}>
+            <View style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 10, marginBottom: 30 }}>
+
                 {data.user_id == userData.user.id &&
                     <>
-                        <TouchableOpacity onPress={() => navigation.navigate("DetailPage", { values: data })} style={{ marginLeft: "auto", marginRight: 15, borderWidth: 0, backgroundColor: "#ffd470", borderRadius: 10, padding: 5 }}>
-                            <Text style={{ fontSize: 22, color: "#fff", fontWeight: "600" }}>Edit</Text>
+                        <TouchableOpacity onPress={() => navigation.navigate("DetailPage", { values: data })} style={{ marginLeft: "auto", marginRight: 20 }}>
+                            <Text style={{ fontSize: 22, color: "#ffd470", fontWeight: "600" }}>Edit</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={() => deletedata()} style={{ marginLeft: "auto", marginRight: 15, borderWidth: 0, backgroundColor: "#ffd470", borderRadius: 10, padding: 5 }}>
-                            <Text style={{ fontSize: 22, color: "#fff", fontWeight: "600" }}>Delete</Text>
+                        <TouchableOpacity onPress={() => deletedata()} style={{ marginRight: 20 }}>
+                            <Text style={{ fontSize: 22, color: "#ffd470", fontWeight: "600" }}>Delete</Text>
                         </TouchableOpacity>
                     </>
                 }
-                {data.user_id !== userData.user.id&&<TouchableOpacity onPress={() => navigation.navigate("Report", { values: data })} style={{ marginLeft: "auto", marginRight: 15, borderWidth: 0, backgroundColor: "#ffd470", borderRadius: 10, padding: 5 }}>
-                    <Text style={{ fontSize: 22, color: "#fff", fontWeight: "600" }}>REPORT</Text>
+                {data.user_id !== userData.user.id && <TouchableOpacity onPress={() => navigation.navigate("Report", { values: data })} style={{ marginLeft: 15 }}>
+                    <Text style={{ fontSize: 22, color: "#ffd470", fontWeight: "600" }}>REPORT</Text>
                 </TouchableOpacity>}
             </View>
-
         </ScrollView>
     )
 }
 const styles = StyleSheet.create({
     cantainer: {
         flex: 1,
-
     },
     inercantainer: {
         borderWidth: 0,
@@ -137,7 +135,6 @@ const styles = StyleSheet.create({
         color: "black",
         fontWeight: "bold",
         margin: 10,
-
     },
     maincantainer: {
         borderWidth: 2,
@@ -154,7 +151,6 @@ const styles = StyleSheet.create({
         shadowRadius: 20,
         shadowColor: "black",
         elevation: 5
-
     }
 
 }

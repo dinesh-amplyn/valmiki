@@ -69,6 +69,29 @@ const CreatePost = ({ navigation, route }) => {
                 alert(error.message);
             });
     }
+    const updateimage = () => {
+        let data = new FormData();
+        data.append('image', {
+            name: image.modificationDate + '.jpg',
+            type: image.mime,
+            uri: Platform.OS === 'ios' ? image.path.replace('file://', '') : image.path,
+        });
+        console.log("data::::::::::::::::", JSON.stringify(data))
+        data.append('user_id', userData.user.id);
+        data.append('id', id);
+        console.log("imagedata::::::::::::::::", JSON.stringify(data))
+        ApisService.newsupdateimage(data)
+            .then(response => {
+                console.log("response::::", response)
+                if (response.status) {
+                    updatenews()
+                    // navigation.navigate("AayojanTab")
+
+                }
+            }).catch(error => {
+                alert(error.message);
+            });
+    }
     const uploaded = () => {
         ImagePicker.openPicker({
             width: 300,
@@ -81,7 +104,8 @@ const CreatePost = ({ navigation, route }) => {
     }
     const handalpublisdata=()=>{
         if(route && route.params){
-            updatenews()
+            updateimage()
+            
         }
         else{
             publisdata()
@@ -97,7 +121,7 @@ const CreatePost = ({ navigation, route }) => {
             <ScrollView style={styles.maincontainer}>
                 <Image
                     style={styles.imagecontener}
-                    source={{ uri: image ? image.path : "https://thumbs.dreamstime.com/b/news-newspapers-folded-stacked-word-wooden-block-puzzle-dice-concept-newspaper-media-press-release-42301371.jpg" }} />
+                    source={{ uri: image ? image.path.replace("localhost", "192.168.29.196") : "https://thumbs.dreamstime.com/b/news-newspapers-folded-stacked-word-wooden-block-puzzle-dice-concept-newspaper-media-press-release-42301371.jpg" }} />
                 {/* {console.log("image", image)} */}
                 <View style={styles.uploadcontern}>
                     <Fontisto name={"upload"} size={s(17)} color="black" />

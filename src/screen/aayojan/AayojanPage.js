@@ -28,12 +28,13 @@ const AayojanPage = ({ navigation, route }) => {
     const [id, setId] = useState()
     const [selectdata, setSelectdata] = useState([])
     const [isModalVisible, setModalVisible] = useState(false);
-    const {values} = route.params
+    // const {values} = route.params
 
     useEffect(() => {
         if (route && route.params) {
             const { title, description, image, address, is_public, id, start_date_time, end_date_time, event_type } = route.params.values
             setTitle(title)
+            console.log("imagepath", image)
             setDiscription(description)
             setImage({ path: image })
             setIsSelected(is_public)
@@ -68,20 +69,21 @@ const AayojanPage = ({ navigation, route }) => {
     }
     const updateimage = () => {
         let data = new FormData();
-        data.append('images', {
+        data.append('image', {
             name: image.modificationDate + '.jpg',
             type: image.mime,
             uri: Platform.OS === 'ios' ? image.path.replace('file://', '') : image.path,
         });
+        console.log("data::::::::::::::::", JSON.stringify(data))
+        data.append('user_id', userData.user.id);
+        data.append('id', id);
         console.log("imagedata::::::::::::::::", JSON.stringify(data))
-        // data.append('user_id', userData.user.id);
-        data.append('event_id', values.id);
         ApisService.eventsupdateimage(data)
             .then(response => {
                 console.log("response::::", response)
                 if (response.status) {
-                    // navigation.navigate("AayojanTab")
                     updatenews()
+                    navigation.navigate("AayojanTab")
 
                 }
             }).catch(error => {
@@ -155,7 +157,7 @@ const AayojanPage = ({ navigation, route }) => {
             <ScrollView style={styles.maincontainer}>
                 <Image
                     style={styles.imagecontener}
-                    source={{ uri: image ? image.path : "https://thumbs.dreamstime.com/b/news-newspapers-folded-stacked-word-wooden-block-puzzle-dice-concept-newspaper-media-press-release-42301371.jpg" }} />
+                    source={{ uri: image ? image.path.replace("localhost", "192.168.29.196") : "https://thumbs.dreamstime.com/b/news-newspapers-folded-stacked-word-wooden-block-puzzle-dice-concept-newspaper-media-press-release-42301371.jpg" }} />
                 {console.log("image", image)}
                 <View style={styles.uploadcontern}>
                     <Fontisto name={"upload"} size={s(17)} color="black" />
@@ -276,9 +278,9 @@ const AayojanPage = ({ navigation, route }) => {
     )
 }
 const styles = StyleSheet.create({
-    // maincontainer: {
-    //     flex: 1
-    // },
+    maincontainer: {
+        flex: 1
+    },
     imagecontener: {
         width: s(320),
         height: s(170),

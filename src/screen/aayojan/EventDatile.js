@@ -46,6 +46,7 @@ const EventDatile = ({ route, navigation }) => {
             <Image
                 style={styles.imagecontener}
                 source={{ uri: data && data.image && data.image.replace("localhost", "192.168.29.196") }} />
+                
             <View style={{ margin: 15 }}>
                 <Text style={{ fontSize: 25, color: "black" }}>{data.title}</Text>
                 <Text style={styles.inercantainer}>{data.start_date_time}</Text>

@@ -34,7 +34,7 @@ const DetailPage = ({ navigation, route }) => {
     const datee = new Date()
     useEffect(() => {
         if (route && route.params) {
-            const { id, name_indicator, name, date_of_birth, date_of_death, condolence_message, native_village, event_name, event_datetime, event_place, mourning_family, mobiles } = route.params.values
+            const {image, id, name_indicator, name, date_of_birth, date_of_death, condolence_message, native_village, event_name, event_datetime, event_place, mourning_family, mobiles } = route.params.values
             setIndicator(name_indicator)
             console.log("name_indicator", name_indicator)
             setName(name)
@@ -48,6 +48,8 @@ const DetailPage = ({ navigation, route }) => {
             setMourningFamily(mourning_family)
             setNumber(mobiles)
             setId(id)
+            setImage({ path: image })
+
         }
     }, [])
     const setdata = () => {
@@ -109,6 +111,29 @@ const DetailPage = ({ navigation, route }) => {
                 alert(error.message);
             });
     }
+    const updateimage = () => {
+        let data = new FormData();
+        data.append('image', {
+            name: image.modificationDate + '.jpg',
+            type: image.mime,
+            uri: Platform.OS === 'ios' ? image.path.replace('file://', '') : image.path,
+        });
+        console.log("data::::::::::::::::", JSON.stringify(data))
+        data.append('user_id', userData.user.id);
+        data.append('id', id);
+        console.log("imagedata::::::::::::::::", JSON.stringify(data))
+        ApisService.announcementsupdateimage(data)
+            .then(response => {
+                console.log("response::::", response)
+                if (response.status) {
+                    updatedata()
+                    navigation.navigate("AayojanTab")
+
+                }
+            }).catch(error => {
+                alert(error.message);
+            });
+    }
     const inputchang = (i, index) => {
         const list = [...number];
         list[index].inputs = i;
@@ -137,7 +162,7 @@ const DetailPage = ({ navigation, route }) => {
     }
     const handaledata = () => {
         if (route && route.params) {
-            updatedata()
+            updateimage()
         }
         else {
             setdata()
@@ -152,7 +177,7 @@ const DetailPage = ({ navigation, route }) => {
                 <TouchableOpacity style={styles.ImagePickercantainer} onPress={() => uploaded()}>
                     <Image
                         style={styles.imagecontener}
-                        source={{ uri: image ? image.path : "https://thumbs.dreamstime.com/b/news-newspapers-folded-stacked-word-wooden-block-puzzle-dice-concept-newspaper-media-press-release-42301371.jpg" }} />
+                        source={{ uri: image ? image.path.replace("localhost", "192.168.29.196") : "https://thumbs.dreamstime.com/b/news-newspapers-folded-stacked-word-wooden-block-puzzle-dice-concept-newspaper-media-press-release-42301371.jpg" }} />
                     {/* {console.log("image", image)} */}
                 </TouchableOpacity>
                 <View>
