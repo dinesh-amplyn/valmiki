@@ -22,7 +22,11 @@ import AayojanPage from '../screen/aayojan/AayojanPage';
 import Report from '../componet/Report';
 import AllDetail from '../toptabs/AllDetail';
 import EventDatile from '../screen/aayojan/EventDatile';
-
+import ContectList from '../screen/contect/ContectList';
+import FaqFile from "../componet/FaqFile"
+import ContectView from '../screen/contect/ContectView';
+import profiles from "../screen/profiles/profiles"
+import CreateProfiles from '../screen/profiles/CreateProfiles';
 const Stack = createStackNavigator();
 
 const Navigation = () => {
@@ -67,6 +71,11 @@ const Navigation = () => {
             <Stack.Screen name="AllDetail" component={AllDetail} />
             <Stack.Screen name="EventDatile" component={EventDatile} />
             <Stack.Screen name="AayojanPage" component={AayojanPage} />
+            <Stack.Screen name="ContectList" component={ContectList} />
+            <Stack.Screen name="FaqFile" component={FaqFile} />
+            <Stack.Screen name="ContectView" component={ContectView} />
+            <Stack.Screen name="profiles" component={profiles} />
+            <Stack.Screen name="CreateProfiles" component={CreateProfiles} />
             <Stack.Screen name="Home" component={Home} options={{
               headerStyle: {
                 backgroundColor: '#ffd470',

@@ -100,6 +100,7 @@ const UserNews = ({ navigation }) => {
                 <Image
                     style={styles.imagecontener}
                     source={{ uri: item.image.replace("localhost", "192.168.29.196") }} />
+                    {console.log(item.image)}
                 <Text style={{ borderWidth: 0, backgroundColor: "#ffd470", fontSize: 18, width: 50, borderRadius: 8, textAlign: "center", position: "absolute", left: 5, top: 5 }}>{item.news_type}</Text>
                 <View style={{ flexDirection: "row" }}>
                     <Text style={styles.orderDetailsText}>{formatedDateTime(item.created_at, 'DD/MM/YYYY')}</Text>

@@ -11,6 +11,9 @@ import AayojanTab from "../screen/aayojan/AayojanTab";
 import UserNews from "../screen/home/UserNews";
 import RenderData from "../componet/RenderData";
 import AllDetail from "../toptabs/AllDetail";
+import ContectList from "../screen/contect/ContectList";
+import profiles from "../screen/profiles/profiles"
+import CreateProfiles from "../screen/profiles/CreateProfiles";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
@@ -30,12 +33,13 @@ const DrawerNavigation = ({ navigation }) => {
                 <Drawer.Screen name="UserNews"
                     component={UserNews}
                 />
-                {/* <Drawer.Screen name="RenderData"
-                    component={RenderData}
-                /> */}
-                {/* <Drawer.Screen name="AllDetail"
-                    component={AllDetail}
-                /> */}
+                <Drawer.Screen name="profiles"
+                    component={profiles}
+                />
+                
+                <Drawer.Screen name="ContectList"
+                    component={ContectList}
+                />
             </Drawer.Navigator>
         </>
     );

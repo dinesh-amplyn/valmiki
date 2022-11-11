@@ -41,7 +41,7 @@
 25        android:allowBackup="false"
 25-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:12:7-34
 26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-26-->[androidx.core:core:1.7.0] C:\Users\Himanshu\.gradle\caches\transforms-3\8e1cfd4e749775f195798be2005dc765\transformed\core-1.7.0\AndroidManifest.xml:24:18-86
+26-->[androidx.core:core:1.6.0] C:\Users\Himanshu\.gradle\caches\transforms-3\5c61d7afbc1bcd99cb491da6ba2ee6c1\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
 27        android:debuggable="true"
 28        android:icon="@mipmap/ic_launcher"
 28-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:10:7-41

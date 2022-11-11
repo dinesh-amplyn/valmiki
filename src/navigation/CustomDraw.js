@@ -68,6 +68,14 @@ const CustomDrawer = ({ navigation }) => {
         if (item.icon == "Logout") {
             logoutAlert()
         }
+        if(item.title=="onenote"){
+            navigation.navigate('ContectList')
+
+        }
+        if(item.title=="pulse"){
+            navigation.navigate('profiles')
+
+        }
     }
     const logoutAlert = () => {
         Alert.alert(

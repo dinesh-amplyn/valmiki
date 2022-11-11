@@ -2,7 +2,66 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/android.iml" filepath="$PROJECT_DIR$/.idea/modules/android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/186890320/react-native-gradle-plugin.iml" filepath="$PROJECT_DIR$/.idea/modules/186890320/react-native-gradle-plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/186890320/react-native-gradle-plugin.main.iml" filepath="$PROJECT_DIR$/.idea/modules/186890320/react-native-gradle-plugin.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/186890320/react-native-gradle-plugin.test.iml" filepath="$PROJECT_DIR$/.idea/modules/186890320/react-native-gradle-plugin.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/valmiki.iml" filepath="$PROJECT_DIR$/.idea/modules/valmiki.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/valmiki.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/valmiki.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/valmiki.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/valmiki.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/valmiki.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/valmiki.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/valmiki.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/valmiki.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1017606302/valmiki.react-native-async-storage_async-storage.iml" filepath="$PROJECT_DIR$/.idea/modules/1017606302/valmiki.react-native-async-storage_async-storage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1017606302/valmiki.react-native-async-storage_async-storage.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/1017606302/valmiki.react-native-async-storage_async-storage.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1017606302/valmiki.react-native-async-storage_async-storage.main.iml" filepath="$PROJECT_DIR$/.idea/modules/1017606302/valmiki.react-native-async-storage_async-storage.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1017606302/valmiki.react-native-async-storage_async-storage.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/1017606302/valmiki.react-native-async-storage_async-storage.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1755584137/valmiki.react-native-community_clipboard.iml" filepath="$PROJECT_DIR$/.idea/modules/1755584137/valmiki.react-native-community_clipboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1755584137/valmiki.react-native-community_clipboard.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/1755584137/valmiki.react-native-community_clipboard.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1755584137/valmiki.react-native-community_clipboard.main.iml" filepath="$PROJECT_DIR$/.idea/modules/1755584137/valmiki.react-native-community_clipboard.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1755584137/valmiki.react-native-community_clipboard.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/1755584137/valmiki.react-native-community_clipboard.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/564720090/valmiki.react-native-community_masked-view.iml" filepath="$PROJECT_DIR$/.idea/modules/564720090/valmiki.react-native-community_masked-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/564720090/valmiki.react-native-community_masked-view.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/564720090/valmiki.react-native-community_masked-view.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/564720090/valmiki.react-native-community_masked-view.main.iml" filepath="$PROJECT_DIR$/.idea/modules/564720090/valmiki.react-native-community_masked-view.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/564720090/valmiki.react-native-community_masked-view.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/564720090/valmiki.react-native-community_masked-view.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2001642884/valmiki.react-native-date-picker.iml" filepath="$PROJECT_DIR$/.idea/modules/2001642884/valmiki.react-native-date-picker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2001642884/valmiki.react-native-date-picker.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/2001642884/valmiki.react-native-date-picker.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2001642884/valmiki.react-native-date-picker.main.iml" filepath="$PROJECT_DIR$/.idea/modules/2001642884/valmiki.react-native-date-picker.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2001642884/valmiki.react-native-date-picker.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/2001642884/valmiki.react-native-date-picker.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1825559613/valmiki.react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/.idea/modules/1825559613/valmiki.react-native-gesture-handler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1825559613/valmiki.react-native-gesture-handler.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/1825559613/valmiki.react-native-gesture-handler.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1825559613/valmiki.react-native-gesture-handler.main.iml" filepath="$PROJECT_DIR$/.idea/modules/1825559613/valmiki.react-native-gesture-handler.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1825559613/valmiki.react-native-gesture-handler.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/1825559613/valmiki.react-native-gesture-handler.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-363443792/valmiki.react-native-image-crop-picker.iml" filepath="$PROJECT_DIR$/.idea/modules/-363443792/valmiki.react-native-image-crop-picker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-363443792/valmiki.react-native-image-crop-picker.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-363443792/valmiki.react-native-image-crop-picker.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-363443792/valmiki.react-native-image-crop-picker.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-363443792/valmiki.react-native-image-crop-picker.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-363443792/valmiki.react-native-image-crop-picker.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-363443792/valmiki.react-native-image-crop-picker.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/104918262/valmiki.react-native-otp-auto-fill.iml" filepath="$PROJECT_DIR$/.idea/modules/104918262/valmiki.react-native-otp-auto-fill.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/104918262/valmiki.react-native-otp-auto-fill.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/104918262/valmiki.react-native-otp-auto-fill.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/104918262/valmiki.react-native-otp-auto-fill.main.iml" filepath="$PROJECT_DIR$/.idea/modules/104918262/valmiki.react-native-otp-auto-fill.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/104918262/valmiki.react-native-otp-auto-fill.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/104918262/valmiki.react-native-otp-auto-fill.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2050152360/valmiki.react-native-pager-view.iml" filepath="$PROJECT_DIR$/.idea/modules/-2050152360/valmiki.react-native-pager-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2050152360/valmiki.react-native-pager-view.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-2050152360/valmiki.react-native-pager-view.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2050152360/valmiki.react-native-pager-view.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-2050152360/valmiki.react-native-pager-view.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2050152360/valmiki.react-native-pager-view.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-2050152360/valmiki.react-native-pager-view.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1543088193/valmiki.react-native-reanimated.iml" filepath="$PROJECT_DIR$/.idea/modules/-1543088193/valmiki.react-native-reanimated.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1543088193/valmiki.react-native-reanimated.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-1543088193/valmiki.react-native-reanimated.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1543088193/valmiki.react-native-reanimated.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1543088193/valmiki.react-native-reanimated.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1543088193/valmiki.react-native-reanimated.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-1543088193/valmiki.react-native-reanimated.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1627467418/valmiki.react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/.idea/modules/-1627467418/valmiki.react-native-safe-area-context.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1627467418/valmiki.react-native-safe-area-context.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-1627467418/valmiki.react-native-safe-area-context.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1627467418/valmiki.react-native-safe-area-context.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1627467418/valmiki.react-native-safe-area-context.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1627467418/valmiki.react-native-safe-area-context.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-1627467418/valmiki.react-native-safe-area-context.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/111646974/valmiki.react-native-screens.iml" filepath="$PROJECT_DIR$/.idea/modules/111646974/valmiki.react-native-screens.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/111646974/valmiki.react-native-screens.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/111646974/valmiki.react-native-screens.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/111646974/valmiki.react-native-screens.main.iml" filepath="$PROJECT_DIR$/.idea/modules/111646974/valmiki.react-native-screens.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/111646974/valmiki.react-native-screens.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/111646974/valmiki.react-native-screens.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-148442679/valmiki.react-native-splash-screen.iml" filepath="$PROJECT_DIR$/.idea/modules/-148442679/valmiki.react-native-splash-screen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-148442679/valmiki.react-native-splash-screen.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-148442679/valmiki.react-native-splash-screen.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-148442679/valmiki.react-native-splash-screen.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-148442679/valmiki.react-native-splash-screen.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-148442679/valmiki.react-native-splash-screen.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-148442679/valmiki.react-native-splash-screen.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1548219577/valmiki.react-native-vector-icons.iml" filepath="$PROJECT_DIR$/.idea/modules/1548219577/valmiki.react-native-vector-icons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1548219577/valmiki.react-native-vector-icons.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/1548219577/valmiki.react-native-vector-icons.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1548219577/valmiki.react-native-vector-icons.main.iml" filepath="$PROJECT_DIR$/.idea/modules/1548219577/valmiki.react-native-vector-icons.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1548219577/valmiki.react-native-vector-icons.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/1548219577/valmiki.react-native-vector-icons.unitTest.iml" />
     </modules>
   </component>
 </project>

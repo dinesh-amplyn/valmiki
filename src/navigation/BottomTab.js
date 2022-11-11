@@ -6,39 +6,35 @@ const BottomTab = ({navigation}) => {
     const DATA = [
         {
             id: 1,
-            title: "विवाहिकी |"
+            title: "विवाहिकी |",
+            screnn:"profiles"
         },
         {
             id: 2,
-            title: "आयोजन"
+            title: "आयोजन",
+            screnn:"AayojanTab"
     
         },
         {
             id: 3,
-            icon: "home"
+            icon: "home",
+            screnn:"Home"
         },
         {
             id: 4,
-            title: "श्रद्धांजलि |"
+            title: "श्रद्धांजलि |",
+            screnn:"TopTab"
     
         },
         {
             id: 5,
-            title: "समाचार"
+            title: "समाचार",
+            screnn:"UserNews"
     
         }
     ]
     const GotoTitle = (item) => {
-        if (item.title == "समाचार") {
-            navigation.navigate('UserNews')
-        }
-       if(item.title=="श्रद्धांजलि |"){
-        navigation.navigate('TopTab')
-       }
-
-      if(item.title=="आयोजन"){
-        navigation.navigate('AayojanTab')
-       }  
+            navigation.navigate(item.screnn)
     }
     return (
         <View style={styles.mapcontainer}>

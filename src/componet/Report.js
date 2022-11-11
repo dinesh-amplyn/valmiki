@@ -15,9 +15,10 @@ const Report = ({route,navigation}) => {
         let data={
             user_id:userData.user.id,
             description:discription,
-            action_id:values.id,
+            action_id:values,
             action_type:isSelected
         }
+        {console.log(data)}
         ApisService.CreateReport(data)
             .then(response => {
                 console.log('response::::', response)

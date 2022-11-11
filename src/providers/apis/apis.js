@@ -2,6 +2,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = `http://192.168.29.196/vaivahiki`;
 axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
+// axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.timeout = (30 * 1000);
 function readError(error) {
     console.log('Error from api:::::::::', JSON.stringify(error))
@@ -127,4 +128,22 @@ export const newsupdateimage = (params) => {
 }
 export const userslisting = (params) => {
     return axios.get(`/api/users/listing`, params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const contactslisting = (params) => {
+    return axios.get(`/api/contacts/listing`, params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const vaivahiki_faq = (params) => {
+    return axios.get(`/api/pages?slug=vaivahiki-faq`, params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const contactsview = (id) => {
+    return axios.get(`/api/contacts/view/${id}`).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const allstaiclist = () => {
+    return axios.get(`/api/get-all-static-and-dynamic-lists`).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const citiesstates = () => {
+    return axios.get(`/api/get-cities-states`).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const  profilescreate = (params) => {
+    return axios.post(`/api/ profiles/create`, params).then(response => readResponse(response)).catch(error => { throw readError(error); });
 }
