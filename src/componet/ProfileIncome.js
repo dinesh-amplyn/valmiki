@@ -42,7 +42,7 @@ const ProfileIncome = (props) => {
     const handaldata=(index)=>{
         setIncomedata(incomes[index])
     }
-console.log(incomedata)
+// console.log(incomedata)
     return (
         <View style={styles.SelectDropdown}>
             <SelectDropdown
@@ -62,7 +62,7 @@ console.log(incomedata)
                 onSelect={(selectedItem, index) => {
 
                     handaldata(index)
-                    console.log(selectedItem, index)
+                    // console.log(selectedItem, index)
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
 

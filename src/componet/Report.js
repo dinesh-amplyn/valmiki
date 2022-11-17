@@ -18,10 +18,10 @@ const Report = ({route,navigation}) => {
             action_id:values,
             action_type:isSelected
         }
-        {console.log(data)}
+        // {console.log(data)}
         ApisService.CreateReport(data)
             .then(response => {
-                console.log('response::::', response)
+                // console.log('response::::', response)
                 if (response.status) {
                     navigation.goBack()
                 }

@@ -10,7 +10,7 @@ const State = (props) => {
     useEffect(()=>{
         handaldata()
     },[])
-    console.log("data",data)
+    // console.log("data",data)
      const handaldata=()=>{
         let newarr=[]
         for (var key in data) {
@@ -18,7 +18,7 @@ const State = (props) => {
                 newarr.push(data[key]) 
             }
           }
-          console.log("newarr",newarr)
+        //   console.log("newarr",newarr)
           setState(newarr)
      }
      const handaljobid=(item)=>{
@@ -41,7 +41,7 @@ const State = (props) => {
         defaultValue={stateid}
         onSelect={(selectedItem, index) => {
             handaljobid(selectedItem)
-            console.log(selectedItem, index)
+            // console.log(selectedItem, index)
         }}
         buttonTextAfterSelection={(selectedItem, index) => {
           

@@ -33,13 +33,43 @@ const CreatePost = ({ navigation, route }) => {
             type: image.mime,
             uri: Platform.OS === 'ios' ? image.path.replace('file://', '') : image.path,
         });
-        console.log("data::::::::::::::::", JSON.stringify(data))
         data.append('user_id', userData.user.id);
         data.append('title', title);
         data.append('description', discription);
         data.append('author', author);
         data.append('news_type', isSelected);
         console.log("data", data)
+        // data.append('user_id', userData.user.id);
+        // data.append('name', 'name');
+        // data.append("dob", '2002-10-10');
+        // data.append("birth_time", '11:22:00');
+        // data.append("village", 'village');
+        // data.append("pincode", '965478');
+        // data.append("address", 'address');
+        // data.append("state_id", 7);
+        // data.append("contact_number", '9887456321');
+        // data.append("contact_person", 'contactperson');
+        // data.append("about_profile", 'aboutprofile');
+        // data.append("email", 'email@SDF.SDF');
+        // data.append("mobile", '9887456321');
+        // data.append("income_min", 5);
+        // data.append("income_max", 15);
+        // data.append("current_posting", 'currentposting');
+        // data.append("highest_education_id", 8);
+        // data.append("height", '5.9');
+        // data.append("job_id", 1);
+        // data.append("gender", 'Male');
+        // data.append("father_name", 'fathername');
+        // data.append("marital_status_id", 9);
+        // data.append("birth_place", 'birthplace');
+        // data.append("district_id", 8);
+
+        // let allGotas = [];
+        // allGotas.push({'gotra_type' : 'self', 'gotra_name' : 'mitava'});
+        // data.append("gotras", JSON.stringify(allGotas));
+
+        console.log("data::::::::::::::::", JSON.stringify(data))
+
         ApisService.create(data)
             .then(response => {
                 console.log("response::::", response)

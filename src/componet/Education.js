@@ -6,13 +6,13 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 const Education = (props) => {
     // const DATA = ["on school","MTech/ME/march","MS/MD","BED","LLB","LLM","BCA","BBA","MBA","MCA","PRIMARY SCHOOL","B.PHARMA","M.PHARMA","M.DES","CA/CS/CFA","PHD","OTHER","MIDDLE SCHOOL","HIGHT SCHOOL","Diploma","BA/BCOMM/BSC","MA/MCOM/MSC","MTECH/BE/BARCH","MBBS/BDS"]
-    const {setEducation,education,data} = props
+    const {setEducation,education,data,index,type} = props
     const [educatin,setEducatin]=useState([])
-    console.log(education)
+    // console.log(education)
     useEffect(()=>{
         handaldata()
     },[])
-    console.log("data",data)
+    // console.log("data",data)
 
      const handaldata=()=>{
         let newarr=[]
@@ -21,9 +21,19 @@ const Education = (props) => {
                 newarr.push(data[key]) 
             }
           }
-          console.log("newarr",newarr)
+        //   console.log("newarr",newarr)
           setEducatin(newarr)
      }
+     const handelgoter = (item) => {
+        if(type=="Basic"){
+            setEducation(item)
+        }else
+            
+          {  let newgoter=[...education]
+            newgoter[index].education_id=item
+            setEducation(newgoter)
+        }
+            }
     return (
         <View style={styles.SelectDropdown}>
         <SelectDropdown
@@ -39,8 +49,8 @@ const Education = (props) => {
         searchPlaceHolder
         defaultValue={education}
         onSelect={(selectedItem, index) => {
-            setEducation(selectedItem)
-            console.log(selectedItem, index)
+            handelgoter(selectedItem)
+            // console.log(selectedItem, index)
         }}
         buttonTextAfterSelection={(selectedItem, index) => {
           

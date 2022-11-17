@@ -111,7 +111,6 @@ const AayojanPage = ({ navigation, route }) => {
         ApisService.eventscreate(data)
             .then(response => {
                 console.log("response::::", response)
-
                 if (response.status) {
                     navigation.navigate("AayojanTab")
                 }

@@ -12,7 +12,7 @@ const Height = (props) => {
     useEffect(()=>{
         handaldata()
     },[])
-    console.log("data",data)
+    // console.log("data",data)
 
      const handaldata=()=>{
         let newarr=[]
@@ -21,7 +21,7 @@ const Height = (props) => {
                 newarr.push(data[key]) 
             }
           }
-          console.log("newarr",newarr)
+        //   console.log("newarr",newarr)
           setHeight(newarr)
      }
     return (
@@ -40,7 +40,7 @@ const Height = (props) => {
         defaultValue={heigth}
         onSelect={(selectedItem, index) => {
             setHeigth(selectedItem)
-            console.log(selectedItem, index)
+            // console.log(selectedItem, index)
         }}
         buttonTextAfterSelection={(selectedItem, index) => {
           

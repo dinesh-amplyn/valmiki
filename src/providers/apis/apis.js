@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = `http://192.168.29.196/vaivahiki`;
+axios.defaults.baseURL = `http://10.0.2.2/vaivahiki`;
 axios.defaults.headers.post['Content-Type'] = 'multipart/form-data';
 // axios.defaults.headers.post['Content-Type'] = 'application/json';
 axios.defaults.timeout = (30 * 1000);
@@ -145,5 +145,14 @@ export const citiesstates = () => {
     return axios.get(`/api/get-cities-states`).then(response => readResponse(response)).catch(error => { throw readError(error); });
 }
 export const  profilescreate = (params) => {
-    return axios.post(`/api/ profiles/create`, params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+    return axios.post(`/api/profiles/create`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const  profileseducations = (params) => {
+    return axios.post(`/api/profiles/manage-educations`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const  profilesrelatives = (params) => {
+    return axios.post(`/api/profiles/manage-relatives`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const  profilesotherimage = (params) => {
+    return axios.post(`/api/profiles/upload-profile-other-image`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
 }

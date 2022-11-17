@@ -11,7 +11,7 @@ const gander = (props) => {
     useEffect(()=>{
         handaldata()
     },[])
-    console.log("data",data)
+    // console.log("data",data)
      const handaldata=()=>{
         let newarr=[]
         for (var key in data) {
@@ -19,7 +19,7 @@ const gander = (props) => {
                 newarr.push(data[key]) 
             }
           }
-          console.log("newarr",newarr)
+        //   console.log("newarr",newarr)
           setGanders(newarr)
      }
     return (
@@ -38,7 +38,7 @@ const gander = (props) => {
         defaultValue={gander}
         onSelect={(selectedItem, index) => {
             setGander(selectedItem)
-            console.log(selectedItem, index)
+            // console.log(selectedItem, index)
         }}
         buttonTextAfterSelection={(selectedItem, index) => {
           

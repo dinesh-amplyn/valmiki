@@ -9,9 +9,9 @@ const ProfileGoter = (props) => {
     const { goter, setGoter, index } = props
 
     const handelgoter = (item) => {
-let newgoter=[...goter]
-newgoter[index].gotra_type=item
-setGoter(newgoter)
+        let newgoter = [...goter]
+        newgoter[index].gotra_type = item
+        setGoter(newgoter)
     }
 
     return (
@@ -32,7 +32,7 @@ setGoter(newgoter)
                 defaultValue={goter[index].gotra_type}
                 onSelect={(selectedItem, index) => {
                     handelgoter(selectedItem)
-                    console.log(selectedItem, index)
+                    // console.log(selectedItem, index)
                 }}
                 buttonTextAfterSelection={(selectedItem, index) => {
 

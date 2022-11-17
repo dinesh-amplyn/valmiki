@@ -11,7 +11,7 @@ const ProfileOccupation = (props) => {
     useEffect(()=>{
         handaldata()
     },[])
-    console.log("data",data)
+    // console.log("data",data)
 
      const handaldata=()=>{
         let newarr=[]
@@ -20,17 +20,17 @@ const ProfileOccupation = (props) => {
                 newarr.push(data[key]) 
             }
           }
-          console.log("newarr",newarr)
+        //   console.log("newarr",newarr)
           setOccupation(newarr)
      }
-     console.log(jobid)
+    //  console.log(jobid)
      const handaljobid=(item)=>{
      let valuse=   Object.keys(data).find(key=>data[key]===item)
 setJobid(valuse)
      }
     return (
         <View style={styles.SelectDropdown}>
-            {console.log("$$$$$$$$$$$$$$occupation",occupation)}
+            {/* {console.log("$$$$$$$$$$$$$$occupation",occupation)} */}
         <SelectDropdown
          buttonStyle={{borderRadius:100,width:"95%",  borderWidth: 1,
             borderRadius: 20,
@@ -45,7 +45,7 @@ setJobid(valuse)
         defaultValue={data[jobid]}
         onSelect={(selectedItem, index) => {
             handaljobid(selectedItem)
-            console.log(selectedItem, index)
+            // console.log(selectedItem, index)
         }}
         buttonTextAfterSelection={(selectedItem, index) => {
           
