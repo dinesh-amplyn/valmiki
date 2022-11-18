@@ -156,3 +156,9 @@ export const  profilesrelatives = (params) => {
 export const  profilesotherimage = (params) => {
     return axios.post(`/api/profiles/upload-profile-other-image`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
 }
+export const my_profiles = (params) => {
+    return axios.get(`/api/profiles/my-profiles`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const profile_View = (params) => {
+    return axios.get(`/api/profiles/profile-detail-for-view-only`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}

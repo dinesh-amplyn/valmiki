@@ -60,12 +60,12 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
         gotra_type: null,
         gotra_name: null
     }])
-    console.log("goter", goter)
+    // console.log("goter", goter)
     useEffect(() => {
         staticitem()
         citiesstatess()
     }, [])
-    console.log("goter", goter)
+    // console.log("goter", goter)
     useEffect(() => {
         adddata()
     }, [name, village, fathername, gander, marital])
@@ -83,7 +83,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
 
         ApisService.allstaiclist()
             .then(response => {
-                console.log("response::::", response)
+                // console.log("response::::", response)
                 if (response.status) {
                     setStaticdata(response)
                 }
@@ -95,7 +95,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
 
         ApisService.citiesstates()
             .then(response => {
-                console.log("response::::", response)
+                // console.log("response::::", response)
                 if (response.status) {
                     // navigation.navigate("TopTab")
                     setState(response)
@@ -195,7 +195,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
             cropping: true
         }).then(image => {
             setImage(image)
-            console.log(image);
+            // console.log(image);
         });
     }
     // const setdata = () => {
@@ -277,7 +277,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
 
                     <TouchableOpacity >
                         {staticdata && <MartalStaus setMarital={setMarital} marital={marital} data={staticdata.marital_status} />}
-                        {console.log("staticdata.marital_status", staticdata && staticdata.marital_status)}
+                        {/* {console.log("staticdata.marital_status", staticdata && staticdata.marital_status)} */}
                     </TouchableOpacity>
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Heigth*</Text>
@@ -473,7 +473,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                                 autoCapitalize="none"
                                 onChangeText={(e) => setPincode(e)}
                                 placeholderTextColor="black"
-                                maxLength={4}
+                                maxLength={6}
                             // value={pincode}
                             />
                         </View>

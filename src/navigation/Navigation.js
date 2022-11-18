@@ -27,6 +27,7 @@ import FaqFile from "../componet/FaqFile"
 import ContectView from '../screen/contect/ContectView';
 import profiles from "../screen/profiles/profiles"
 import CreateProfiles from '../screen/profiles/CreateProfiles';
+import ProfileView from '../screen/profiles/ProfileView';
 const Stack = createStackNavigator();
 
 const Navigation = () => {
@@ -75,6 +76,7 @@ const Navigation = () => {
             <Stack.Screen name="FaqFile" component={FaqFile} />
             <Stack.Screen name="ContectView" component={ContectView} />
             <Stack.Screen name="profiles" component={profiles} />
+            <Stack.Screen name="ProfileView" component={ProfileView} />
             <Stack.Screen name="CreateProfiles" component={CreateProfiles} />
             <Stack.Screen name="Home" component={Home} options={{
               headerStyle: {

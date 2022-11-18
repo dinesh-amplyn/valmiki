@@ -5,11 +5,11 @@ import { useSelector, useDispatch } from "react-redux";
 import ImagePicker from 'react-native-image-crop-picker';
 import * as ApisService from "../../providers/apis/apis";
 
-const UplodeImage = ({ navigation, route, handaldata }) => {
+const UplodeImage = ( {navigation}) => {
     const dispatch = useDispatch()
     const userData = useSelector(state => state.userData)
     const [image, setImage] = useState(null)
-    
+
     const setdata = () => {
         let data = new FormData();
         data.append('other_image', {
@@ -17,12 +17,15 @@ const UplodeImage = ({ navigation, route, handaldata }) => {
             type: image.mime,
             uri: Platform.OS === 'ios' ? image.path.replace('file://', '') : image.path,
         });
-        data.append(' profile_id',userData.user.profile_id);
+        data.append(' profile_id', userData.user.profile_id);
         console.log("data::::::::::::::::", JSON.stringify(data))
         ApisService.profilesotherimage(data)
             .then(response => {
                 console.log("response::::", response)
                 if (response.status) {
+                    // goBack("profiles")
+                    navigation.navigate("profiles")
+
                     console.log(response.status)
                     // let newuser = userData.user
                     // newuser = { ...newuser, profile_id: response.profile_id }
