@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import ImagePicker from 'react-native-image-crop-picker';
 import * as ApisService from "../../providers/apis/apis";
 
-const UplodeImage = ( {navigation}) => {
+const UplodeImage = ({navigation}) => {
     const dispatch = useDispatch()
     const userData = useSelector(state => state.userData)
     const [image, setImage] = useState(null)
@@ -25,7 +25,6 @@ const UplodeImage = ( {navigation}) => {
                 if (response.status) {
                     // goBack("profiles")
                     navigation.navigate("profiles")
-
                     console.log(response.status)
                     // let newuser = userData.user
                     // newuser = { ...newuser, profile_id: response.profile_id }

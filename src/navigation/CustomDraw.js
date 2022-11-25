@@ -74,7 +74,18 @@ const CustomDrawer = ({ navigation }) => {
         }
         if(item.title=="pulse"){
             navigation.navigate('profiles')
-
+        }
+        if(item.title=="male"){
+            navigation.navigate('Contectlisting')
+        }
+        if(item.title=="share"){
+            navigation.navigate('Feedback')
+        }
+        if(item.title=="sun"){
+            navigation.navigate('Setting')
+        }
+        if(item.title=="bell"){
+            navigation.navigate('GetNotification')
         }
     }
     const logoutAlert = () => {
@@ -115,13 +126,13 @@ const CustomDrawer = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             < View style={{ backgroundColor: "rgb(43,47,58)", width: "60%", height: "30%", marginLeft: "auto" }}>
                 <View style={styles.imagescontainer}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=>navigation.navigate("Contectlisting")}>
                         <Image
                             style={styles.tinyLogo}
-                            source={{ uri: "https://t3.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" }} />
+                            source={{ uri:userData.user&&userData.user.image&& userData.user.image.replace("localhost", "192.168.29.196") }} />
+
                     </TouchableOpacity>
-                    <Text style={{ fontSize: 20, fontWeight: "800", color: "black" }}>dinesh</Text>
-                    <Text style={{ fontSize: 17, fontWeight: "800", color: "black" }}>saini</Text>
+                    <Text style={{ fontSize: 20, fontWeight: "800", color: "#fff",alignItems:"center" }}>{userData&&userData.user.name}</Text>
                 </View>
             </View>
 
@@ -158,12 +169,16 @@ const styles = StyleSheet.create({
     tinyLogo: {
         width: s(100),
         height: s(100),
-        borderRadius: s(10),
-        alignSelf: "center",
-        marginRight: s(100),
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: 20
+        borderRadius: s(100),
+        // alignSelf: "center",
+        // marginRight: s(100),
+        // alignItems: "center",
+        // justifyContent: "center",
+        marginTop: 20,
+        marginLeft:-20,
+        borderWidth:5,
+        borderColor:"#fff"
+        
     },
     imagescontainer: {
         top: 0,
@@ -174,6 +189,7 @@ const styles = StyleSheet.create({
         borderBottomRightRadius: s(25),
         position: "absolute",
         width: "100%",
+        // backgroundColor:"#fff"
     },
     drawerItem: {
         flexDirection: "row",

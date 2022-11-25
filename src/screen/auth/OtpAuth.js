@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { Alert, NativeSyntheticEvent, StyleSheet, View, TouchableOpacity, Text, Dimensions } from 'react-native';
 import OTPInputView from '@twotalltotems/react-native-otp-input'
 import { s } from "react-native-size-matters";
@@ -30,9 +29,7 @@ const OtpAuth = ({ route, navigation }) => {
       setErrors(errors)
       setLoading(false)
     }
-
   }
-
   const validateForm = (Code) => {
 
     let errors = null;
@@ -77,7 +74,6 @@ const OtpAuth = ({ route, navigation }) => {
           codeInputFieldStyle={styles.underlineStyleBase}
           codeInputHighlightStyle={styles.underlineStyleHighLighted}
           onCodeFilled={(code) => OtpCode(code)}
-
         />
         {errors && <Text style={{ color: "red" }}>{errors.otp}</Text>}
 

@@ -80,14 +80,14 @@ const CreatePost = ({ navigation, route }) => {
                 alert(error.message);
             });
     }
-    const updatenews=()=>{
-        let data={
+    const updatenews = () => {
+        let data = {
             user_id: userData.user.id,
             title: title,
             description: discription,
             author: author,
             news_type: isSelected,
-            id:id 
+            id: id
         }
         ApisService.newsupdate(data)
             .then(response => {
@@ -132,15 +132,15 @@ const CreatePost = ({ navigation, route }) => {
             console.log(image);
         });
     }
-    const handalpublisdata=()=>{
-        if(route && route.params){
+    const handalpublisdata = () => {
+        if (route && route.params) {
             updateimage()
-            
+
         }
-        else{
+        else {
             publisdata()
         }
-    
+
     }
 
     return (

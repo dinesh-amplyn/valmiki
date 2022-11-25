@@ -51,24 +51,23 @@ const ProfileView = ({ route, navigation }) => {
     const dataview = () => {
         let data = {
             params: {
-
                 profile_id: userData.user.profile_id ? userData.user.profile_id : value.id,
             }
         }
         console.log("data", data)
         ApisService.profile_View(data)
             .then(response => {
+                console.log("response.22222222222222222222222222",JSON.stringify(response.data.relatives))
+
                 console.log('response::::', response)
                 if (response.status) {
                     handaldata(response.data)
                     // setData(response.data)
-                    console.log("response.data", response.data)
                 }
             }).catch(error => {
                 alert(error.message);
             });
     }
-
     return (
         <View style={styles.cantainer}>
             <ScrollView >
@@ -129,8 +128,10 @@ const ProfileView = ({ route, navigation }) => {
                     <Text style={{ color: "#aaa", fontWeight: "600", fontSize: 15, width: "50%" }}>Please use chat system  to know number</Text>
                 </View>
                 <View style={{ borderBottomWidth: 1, borderColor: "#aaa", marginBottom: 70 }} />
+                <TouchableOpacity onPress={() => navigation.navigate("ProfileBasic", { values: data })} >
+                    <Text style={{ fontSize: 22, color: "#ffd470", fontWeight: "600",position:"absolute",bottom:20 }}>Edit</Text>
+                </TouchableOpacity>
             </ScrollView>
-           
         </View>
 
     )

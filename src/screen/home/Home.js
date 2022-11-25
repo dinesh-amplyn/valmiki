@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useState, useLayoutEffect, useRef, useCallback } from "react";
 import { RefreshControl, ActivityIndicator, SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, Image, Button, Dimensions, TouchableOpacity, TextInput, } from 'react-native';
 import { ScrollView, TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { s } from "react-native-size-matters";
@@ -8,6 +8,7 @@ import { getCurrentDateTime, formatedDateTime } from "../../providers/global/glo
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { useDrawerStatus } from '@react-navigation/drawer';
 import BottomTab from "../../navigation/BottomTab";
+import ContectModal from "../../componet/ContectModal";
 const Home = ({ navigation }) => {
     const userData = useSelector(state => state.userData)
     const isDrawerOpen = useDrawerStatus()
@@ -16,8 +17,13 @@ const Home = ({ navigation }) => {
     const [data, setData] = useState()
     const [loader, setLoader] = useState(false);
     const [refreshing, setRefreshing] = useState(false);
+
     const [showData, setShowData] = useState(false);
+    const [isModalVisible, setModalVisible] = useState(false)
     const flatlistRef = useRef();
+    useEffect(() => {
+        setModalVisible(true)
+    }, [])
 
     useEffect(() => {
         dataList()
@@ -28,15 +34,37 @@ const Home = ({ navigation }) => {
     useEffect(() => {
         console.log("isDrawerOpen::::::::::::::::::", isDrawerOpen)
     }, [isDrawerOpen]);
+    useEffect(() => {
+        console.log("userData::::::::::::::::::", userData)
+        if (userData && userData.user.contact_id) {
+
+            setModalVisible(false)
+        }
+        else {
+            setModalVisible(true)
+
+        }
+        navigation.addListener('focus', () => {
+            if (userData && userData.user.contact_id) {
+
+                setModalVisible(false)
+            }
+            else {
+                setModalVisible(true)
+
+            }
+        })
+    }, []);
+
     const dataList = () => {
         setLoader(true)
         ApisService.feedHistory(userData.user.id, pages)
             .then(response => {
-                // console.log('response::::', response)
+                console.log('response::::', response)
                 if (response.status) {
                     setData(response.data)
                     setLoader(false)
-                    // console.log("response.data", response.data)
+                    console.log("response.data", response.data)
                 }
             }).catch(error => {
                 alert(error.message);
@@ -85,7 +113,7 @@ const Home = ({ navigation }) => {
             ),
             headerRight: () => (
                 <View style={styles.headerRight} >
-                    <TouchableOpacity style={{ marginRight: 15 }} >
+                    <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate("ContectList")} >
                         <Ionicons name="ios-people" size={s(22)} color="#fff" />
                     </TouchableOpacity >
                     <TouchableOpacity style={{ marginRight: 15 }}>
@@ -94,33 +122,69 @@ const Home = ({ navigation }) => {
                     <TouchableOpacity style={{ marginRight: 15 }}>
                         <Ionicons name="md-paper-plane" size={s(22)} color="#fff" />
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ marginRight: 15 }}>
+                    <TouchableOpacity style={{ marginRight: 15 }} onPress={()=>navigation.navigate("GetNotification")}>
                         <Ionicons name="md-notifications-sharp" size={s(22)} color="#fff" />
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ marginRight: 15 }}>
+                    <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate("Contectlisting")}>
                         <Image
                             style={styles.imagecontener}
-                            source={{ uri: "https://www.pngall.com/wp-content/uploads/5/Profile-PNG-Clipart.png" }} />
+                            source={{ uri: userData.user && userData.user.image && userData.user.image.replace("localhost", "192.168.29.196") }} />
+
                     </TouchableOpacity>
                 </View>
             ),
         })
     }
-    const Source = ({ item }) => {
+    const handaldateil = (item, data) => {
+        if (item.type == "news") {
+            navigation.navigate("NewsDatile", { value: item.id})
+            console.log("*************************")
+        }
+        if (item.type == "event") {
+            navigation.navigate("EventDatile", { value: item})
+            console.log("*************************")
+        }
+        if (item.type == "announcement") {
+            navigation.navigate("AllDetail", { value: item.id})
+            console.log("*************************")
+        }
+    }
+    const Source = ({ item, data }) => {
         return (
             <ScrollView style={styles.maincontainer}>
-                <View style={styles.maininercontainer}>
-                    <Image
-                        style={{ width: 50, height: 50, borderRadius: 100 }}
-                        source={{ uri: item.image.replace("localhost", "192.168.29.196") }} />
-                    <Text>{item.title}</Text>
-                    <Text style={styles.orderDetailsText}>{item.created_at}</Text>
-                    <Text style={{ color: "#ffd470", fontWeight: "500", fontSize: 15, alignItems: "baseline", padding: 10 }}>{item.description}</Text>
-                    <Text style={{ borderWidth: 0, color: "red", fontSize: 20 }}>{item.event_type}</Text>
+
+                {item.type == "post" ? <View style={styles.maininercontainer}>
+                    <View style={{ flexDirection: "row" }}>
+
+                        <Image
+                            style={{ width: 50, height: 50, borderRadius: 100, margin: 10 }}
+                            source={{ uri: item.image.replace("localhost", "192.168.29.196") }} />
+                        <View style={{ alignSelf: "baseline", margin: 15 }}>
+                            <Text style={{ fontSize: 18, fontWeight: "600", color: "#ffd470" }}>{item.title}</Text>
+                            <Text style={{ color: "#ffd470", fontWeight: "600", fontSize: 15 }}>posted on {formatedDateTime(item.created_at, 'DD/MM YYYY')}</Text>
+
+                        </View>
+                    </View>
+                    <Text style={{ color: "#ffd470", fontWeight: "500", fontSize: 15, marginLeft: 20, marginBottom: 30, width: 70 }}>{item.description}</Text>
+
                 </View>
+                    :
+                    <TouchableWithoutFeedback style={styles.maininercontainer} onPress={() => handaldateil(item, data)} >
+
+                        <Image
+                            style={{ width: 370, height: 200, borderTopLeftRadius: 12, borderTopRightRadius: 12, }}
+                            source={{ uri: item.image.replace("localhost", "192.168.29.196") }} />
+                        <View style={{ flexDirection: "row", marginTop: 10 }}>
+                            <Text style={{ color: "#fff", fontWeight: "600", fontSize: 18, width: "15%", height: 50, backgroundColor: "#ffd470", marginLeft: 10, borderRadius: 8, textAlign: "center" }}>{formatedDateTime(item.created_at, 'DD/MM YYYY')}</Text>
+                            <Text style={{ color: "#ffd470", fontWeight: "400", fontSize: 20, width: "60%", marginLeft: 15 }}>{item.description}</Text>
+                        </View>
+                        <View style={{ borderBottomWidth: 1, borderBottomColor: "#ccc", margin: 10 }} />
+                        <Text style={{ borderWidth: 0, color: "#ffd470", fontSize: 20, marginLeft: 15, marginBottom: 10 }}>{item.event_type}</Text>
+                    </TouchableWithoutFeedback>}
             </ScrollView>
         )
     }
+
     return (
         <View style={styles.container}
         >
@@ -150,13 +214,13 @@ const Home = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>}
                 data={data}
-                renderItem={({ item }) => (<Source item={item} />)}
+                renderItem={({ item }) => (<Source item={item} data={data} />)}
             // showsHorizontalScrollIndicator={false}
             />
             <View style={{ position: "absolute", width: "100%", bottom: 10 }}>
                 <BottomTab navigation={navigation} />
             </View>
-
+            <ContectModal setModalVisible={setModalVisible} isModalVisible={isModalVisible} />
         </View>
     )
 }
@@ -210,8 +274,11 @@ const styles = StyleSheet.create({
     },
     maininercontainer: {
         justifyContent: "center",
-        alignSelf: "baseline",
-        textAlign: "center"
+        // alignSelf: "baseline",
+        textAlign: "center",
+
+        // borderBottomRightRadius:
+
     },
     textcontainer1: {
         fontWeight: "500",

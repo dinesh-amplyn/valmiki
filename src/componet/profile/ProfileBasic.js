@@ -25,9 +25,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
     const userData = useSelector(state => state.userData)
 
     const [image, setImage] = useState(null)
-    // const [number, setNumber] = useState([{ inputs: "" }])
     const [name, setName] = useState()
-    // const [indicator, setIndicator] = useState();
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
     const [village, setVillage] = useState();
@@ -55,11 +53,88 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
     const [district, setDistrict] = useState();
     const [incomedata, setIncomedata] = useState({
         title: null,
+        max:null,
+        min:null
     })
     const [goter, setGoter] = useState([{
         gotra_type: null,
         gotra_name: null
     }])
+    useEffect(() => {
+        if (route && route.params) {
+            console.log("route.params", route.params)
+            const { basic, contact } = route.params.values
+            const { name, father_name, image, dob, birth_time, birth_place, marital_status_id, height, highest_education_id, address, job_id, current_posting, income_min, income_max, about_profile, gotras } = basic
+            const { email, contact_number, district_id, mobile, pincode, state_id, village, contact_person } = contact
+
+            setName(name)
+            setFathername(father_name)
+            // setImage({ path: image })
+            setStartDate(dob)
+            setEndDate(birth_time)
+            setbirthplace(birth_place)
+            setMarital(marital_status_id)
+            setHeigth(height)
+            setEducation(highest_education_id)
+            setState(state_id)
+            setDistrict(district_id)
+            setVillage(village)
+            setAddress(address)
+            setPincode(pincode)
+            setJobid(job_id)
+            setCurrentposting(current_posting)
+            setIncomedata({income_max:income_max,income_min:income_min})
+            setAboutprofile(about_profile)
+            setMobile(mobile)
+            setEmail(email)
+            setContactperson(contact_person)
+            setContactnumber(contact_number)
+            setGoter([{gotra_type: "maa",
+                gotra_name: "saini"}])
+        }
+    }, [])
+
+    const updatenews = () => {
+        let data = {
+            user_id: userData.user.id,
+            profile_id: userData.user.profile_id,
+            name: name,
+            father_name: fathername,
+            gender: gander,
+            dob: startDate,
+            birth_time: endDate,
+            birth_place: birthplace,
+            marital_status_id: "1",
+            height: heigth,
+            highest_education_id: education,
+            state_id: "rajasthan",
+            district_id: "churu",
+            village: village,
+            address: address,
+            pincode: pincode,
+            job_id: jobid,
+            current_posting: currentposting,
+            income_min: incomedata.min,
+            income_max: incomedata.max,
+            about_profile: aboutprofile,
+            mobile: mobile,
+            email: email,
+            contact_person: contactperson,
+            contact_number: contactnumber,
+            gotras:(goter)
+        }
+        ApisService.profiles_update(data)
+       
+            .then(response => {
+                console.log(data)
+                console.log("response::::", response.status)
+                if (response.status) {
+                    navigation.navigate("profiles")
+                }
+            }).catch(error => {
+                alert(error.message);
+            });
+    }
     // console.log("goter", goter)
     useEffect(() => {
         staticitem()
@@ -104,7 +179,16 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                 alert(error.message);
             });
     }
+    const handalpublisdata = () => {
+        if (route && route.params) {
+            updatenews()
 
+        }
+        else {
+            setdata()
+        }
+
+    }
     const datee = new Date()
 
 
@@ -198,14 +282,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
             // console.log(image);
         });
     }
-    // const setdata = () => {
-    //     if (route && route.params) {
-    //         updateimage()
-    //     }
-    //     else {
-    //         setdata()
-    //     }
-    // }
+
     const Handaldistce = useCallback(() => {
         return (
             <Distices setDistrict={setDistrict} district={district} data={state && state.cities[stateid]} stateid={stateid} />
@@ -213,9 +290,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
     }, [stateid])
     return (
 
-
         <ScrollView style={styles.cantainer}>
-
             <TouchableOpacity style={styles.ImagePickercantainer} onPress={() => uploaded()}>
                 <Image
                     style={styles.imagecontener}
@@ -231,7 +306,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         autoCapitalize="none"
                         onChangeText={(e) => setName(e)}
                         placeholderTextColor="black"
-                    // value={name}
+                        value={name}
                     />
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Father Name*</Text>
@@ -243,7 +318,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         autoCapitalize="none"
                         onChangeText={(e) => setFathername(e)}
                         placeholderTextColor="black"
-                    // value={name}
+                        value={fathername}
                     />
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Gender*</Text>
@@ -269,7 +344,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         autoCapitalize="none"
                         onChangeText={(e) => setbirthplace(e)}
                         placeholderTextColor="black"
-                    // value={village}
+                        value={birthplace}
                     />
                 </View>
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Marrital Status*</Text>
@@ -316,7 +391,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         autoCapitalize="none"
                         onChangeText={(e) => setCurrentposting(e)}
                         placeholderTextColor="black"
-                    // value={name}
+                        value={currentposting}
                     />
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Native village*</Text>
@@ -328,7 +403,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         autoCapitalize="none"
                         onChangeText={(e) => setVillage(e)}
                         placeholderTextColor="black"
-                    // value={name}
+                        value={village}
                     />
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Mobile*</Text>
@@ -341,7 +416,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         onChangeText={(e) => setMobile(e)}
                         placeholderTextColor="black"
                         maxLength={10}
-                    // value={name}
+                        value={mobile}
                     />
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Email*</Text>
@@ -353,7 +428,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         autoCapitalize="none"
                         onChangeText={(e) => setEmail(e)}
                         placeholderTextColor="black"
-                    // value={name}
+                        value={email}
                     />
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>About profile*</Text>
@@ -363,10 +438,12 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         style={styles.aboutinputcontainer}
                         placeholder="About profile"
                         autoCapitalize="none"
+
                         onChangeText={(e) => setAboutprofile(e)}
                         placeholderTextColor="black"
                         value={aboutprofile}
                         multiline
+
                     />
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Contect person*</Text>
@@ -378,7 +455,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         autoCapitalize="none"
                         onChangeText={(e) => setContactperson(e)}
                         placeholderTextColor="black"
-                    // value={name}
+                        value={contactperson}
                     />
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Contect number*</Text>
@@ -392,7 +469,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         placeholderTextColor="black"
                         maxLength={10}
 
-                    // value={name}
+                        value={contactnumber}
                     />
                 </View >
 
@@ -451,7 +528,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                                 autoCapitalize="none"
                                 onChangeText={(e) => setAddress(e)}
                                 placeholderTextColor="black"
-                            // value={eventPlace}
+                                value={address}
                             />
                         </View>
                         <Text style={styles.textcontainer}>Address*</Text>
@@ -462,7 +539,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                                 autoCapitalize="none"
                                 onChangeText={(e) => setAddress(e)}
                                 placeholderTextColor="black"
-                            // value={eventPlace}
+                                value={address}
                             />
                         </View>
                         <Text style={styles.textcontainer}>Pincode*</Text>
@@ -474,12 +551,12 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                                 onChangeText={(e) => setPincode(e)}
                                 placeholderTextColor="black"
                                 maxLength={6}
-                            // value={pincode}
+                                value={pincode}
                             />
                         </View>
                     </View>
                 </View>
-                <TouchableOpacity onPress={() => setdata()} style={{ justifyContent: "center", alignItems: "center", margin: 40 }}>
+                <TouchableOpacity onPress={() => handalpublisdata()} style={{ justifyContent: "center", alignItems: "center", margin: 40 }}>
 
                     <Text style={{ fontSize: 22, borderWidth: 1, width: "85%", textAlign: "center", borderRadius: 10, backgroundColor: "#ffd470", color: "white" }}>SUBMIT & CONTINUE</Text>
                 </TouchableOpacity>
@@ -501,7 +578,6 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                     modal
                     open={paikerdata}
                     value={endDate}
-
                     date={datee}
                     onConfirm={(date) => {
                         setEndDate(date)

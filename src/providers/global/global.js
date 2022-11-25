@@ -19,12 +19,12 @@ export const getUserInfo = async () => {
 }
 export const clearStorage = async () => {
   try {
-      await AsyncStorage.clear();
-      return true;
+    await AsyncStorage.clear();
+    return true;
   } catch (e) {
-      // clear error
-      console.log(e);
-      return true;
+    // clear error
+    console.log(e);
+    return true;
   }
 }
 export const getCurrentDateTime = (format = 'YYYY/MM/DD') => {

@@ -162,3 +162,27 @@ export const my_profiles = (params) => {
 export const profile_View = (params) => {
     return axios.get(`/api/profiles/profile-detail-for-view-only`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
 }
+export const contacts_view= (id) => {
+    return axios.get(`/api/contacts/view/${id}`).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const profiles_update = (params) => {
+    return axios.post(`/api/profiles/update`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const contacts_create = (params) => {
+    return axios.post(`/api/contacts/create`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const contacts_update = (params) => {
+    return axios.post(`/api/contacts/update`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const contacts_image = (params) => {
+    return axios.post(`/api/contacts/update-image`,params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const share_feedback = (params) => {
+    return axios.post(`/api/share-feedback`, params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const update_settings = (params) => {
+    return axios.post(`/api/update-notification-settings`, params).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}
+export const getnotification = (id) => {
+    return axios.get(`/api/get-notification-settings/${id}`, ).then(response => readResponse(response)).catch(error => { throw readError(error); });
+}

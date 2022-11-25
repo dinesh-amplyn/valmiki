@@ -50,7 +50,7 @@ const NewsDatile = ({ route, navigation }) => {
             .then(response => {
                 console.log('response::::', response)
                 if (response.status) {
-                    // setData(response.data)
+                    setData(response.data)
                     console.log("response.data", response.data)
                 }
             }).catch(error => {

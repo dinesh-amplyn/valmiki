@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Text, View } from 'react-native'
+import { Settings, Text, View } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import DrawerNavigation from './DrawerNavigation';
@@ -28,6 +28,14 @@ import ContectView from '../screen/contect/ContectView';
 import profiles from "../screen/profiles/profiles"
 import CreateProfiles from '../screen/profiles/CreateProfiles';
 import ProfileView from '../screen/profiles/ProfileView';
+import ProfileBasic from '../componet/profile/ProfileBasic';
+import Contectlisting from '../screen/contect/Contectlisting';
+import Updatecontect from "../screen/contect/Updatecontect"
+import UplodeImage from '../componet/profile/UplodeImage';
+import Feedback from '../screen/feedback/Feedback';
+import Myinformation from '../screen/contect/Myinformation';
+import Setting from '../screen/settings/Setting';
+import GetNotification from '../screen/settings/GetNotification';
 const Stack = createStackNavigator();
 
 const Navigation = () => {
@@ -78,6 +86,15 @@ const Navigation = () => {
             <Stack.Screen name="profiles" component={profiles} />
             <Stack.Screen name="ProfileView" component={ProfileView} />
             <Stack.Screen name="CreateProfiles" component={CreateProfiles} />
+            <Stack.Screen name="ProfileBasic" component={ProfileBasic} />
+            <Stack.Screen name="Contectlisting" component={Contectlisting} />
+            <Stack.Screen name="Updatecontect" component={Updatecontect} />
+            <Stack.Screen name="UplodeImage" component={UplodeImage} />
+            <Stack.Screen name="Feedback" component={Feedback} />
+            <Stack.Screen name="Myinformation" component={Myinformation} />
+            <Stack.Screen name="Setting" component={Setting} />
+            <Stack.Screen name="GetNotification" component={GetNotification} />
+            
             <Stack.Screen name="Home" component={Home} options={{
               headerStyle: {
                 backgroundColor: '#ffd470',
