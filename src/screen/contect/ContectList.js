@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useLayoutEffect } from "react";
-import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar, Image, Alert, Dimensions, TouchableOpacity, TextInput, } from 'react-native';
-import { ScrollView, TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { SafeAreaView, View, FlatList, StyleSheet, Text, TouchableOpacity, Image, Alert, Dimensions,  TextInput, } from 'react-native';
+// import { ScrollView,  } from "react-native-gesture-handler";
 import { s } from "react-native-size-matters";
 import * as ApisService from "../../providers/apis/apis";
 import { useSelector } from "react-redux";
@@ -81,26 +81,26 @@ const ContectList = ({ navigation }) => {
     }
     const Source = ({ item }) => {
         return (
-            <TouchableWithoutFeedback onPress={() => navigation.navigate("ContectView", { value: item.id })} style={styles.newscontainer}>
+            <TouchableOpacity onPress={() => navigation.navigate("ContectView", { value: item.id })} style={styles.newscontainer}>
                 <Image
                     style={styles.imagecontener}
-                    source={{ uri: item.image.replace("localhost", "10.0.2.2") }} />
-                {console.log(item)}
+                    source={{ uri:item.image.replace("localhost", "192.168.29.196") }} />
+                {console.log("item.image.path+++++++++++++++++++++++++++++++++++++++",item.image)}
 
                 <View style={{ marginLeft: 20, marginTop: 10 }}>
                     <Text style={{ color: "#fff", fontWeight: "600", fontSize: 18 }}>{item.name}</Text>
                     <Text style={{ fontSize: 18, color: "#fff" }}>|  {item.contact_unique_id}</Text>
                 </View>
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
         )
     }
     return (
         <View style={styles.container}>
             <View style={{ backgroundColor: "#ffd470" }}>
                 <View style={styles.inercontainer}>
-                    <Ionicons name="search" size={s(25)} color='black' />
+                    <Ionicons name="search" size={s(25)} color='black' style={{marginLeft:7}}/>
                     < TextInput
-                        // style={styles.inputcontainer}
+                        style={styles.inputcontainer}
                         autoCapitalize="none"
                         multiline={true}
                         onChangeText={(e) => setSearchitem(e)}
@@ -133,7 +133,9 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         fontSize: 17,
         flexDirection: "row",
-        marginLeft: 23,
+        marginLeft: 24,
+        borderRadius:20,
+        marginBottom:5
     },
     textcontainer: {
         marginTop: s(10),
@@ -164,17 +166,17 @@ const styles = StyleSheet.create({
         width: "95%",
         height: 140,
         flexDirection: "row",
-        margin: 15,
+        margin: 10,
         backgroundColor: "#ffd470",
         marginTop: 15,
         shadowOffset: {
-            width: 10,
+            width: 20,
             height: -5
         },
-        shadowOpacity: 5,
-        shadowRadius: 20,
+        shadowOpacity: -20,
+        shadowRadius: 40,
         shadowColor: "black",
-        elevation: 5
+        elevation: 2
     },
     imagecontener: {
         width: 90,
@@ -183,13 +185,16 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     inputcontainer: {
-        borderWidth: 1,
-        borderColor: "#fff",
-        backgroundColor: "#fff",
+        // borderWidth: 1,
+        // borderColor: "#fff",
+        // backgroundColor: "#fff",
         width: "90%",
         alignItems: "center",
-        fontWeight: "600",
+        fontWeight: "500",
         fontSize: 17,
+        borderRadius:10,
+        color:"black"
+    
     },
     orderDetailsText: {
         fontWeight: "600",

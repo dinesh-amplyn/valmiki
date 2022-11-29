@@ -6,6 +6,7 @@ import { s } from "react-native-size-matters";
 import { useSelector } from "react-redux";
 import * as ApisService from "../../providers/apis/apis";
 import { ScrollView } from "react-native-gesture-handler";
+import * as customvilidation from '../../providers/shared/Validater';
 
 const CreatePost = ({ navigation, route }) => {
     const userData = useSelector(state => state.userData)
@@ -15,6 +16,39 @@ const CreatePost = ({ navigation, route }) => {
     const [discription, setDiscription] = useState()
     const [author, setAuthor] = useState()
     const [id, setId] = useState()
+  const [errors, setErrors] = useState({});
+
+    const storeData = () => {
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        let errors = validateForm()
+        if (errors == null) {
+            publisdata()
+        }
+        else (
+            setErrors(errors)
+        )
+    }
+    const validateForm = () => {
+        let errors = {};
+        if (customvilidation.isEmpty(image)) {
+            errors.image = "image can't be blank"
+        }
+       if(customvilidation.isEmpty(title)) {
+        errors.title = "title can't be blank"
+    }
+       if(customvilidation.isEmpty(discription)) {
+        errors.discription = "discription can't be blank"
+    }
+       if(customvilidation.isEmpty(author)) {
+        errors.author = "author can't be blank"
+    }
+        console.log('validation errors::::', errors);
+        if (customvilidation.isEmpty(errors)) {
+            return null;
+        } else {
+            return errors;
+        }
+    }
     useEffect(() => {
         if (route && route.params) {
             const { title, description, image, news_type, owner_name, id } = route.params.values
@@ -39,34 +73,6 @@ const CreatePost = ({ navigation, route }) => {
         data.append('author', author);
         data.append('news_type', isSelected);
         console.log("data", data)
-        // data.append('user_id', userData.user.id);
-        // data.append('name', 'name');
-        // data.append("dob", '2002-10-10');
-        // data.append("birth_time", '11:22:00');
-        // data.append("village", 'village');
-        // data.append("pincode", '965478');
-        // data.append("address", 'address');
-        // data.append("state_id", 7);
-        // data.append("contact_number", '9887456321');
-        // data.append("contact_person", 'contactperson');
-        // data.append("about_profile", 'aboutprofile');
-        // data.append("email", 'email@SDF.SDF');
-        // data.append("mobile", '9887456321');
-        // data.append("income_min", 5);
-        // data.append("income_max", 15);
-        // data.append("current_posting", 'currentposting');
-        // data.append("highest_education_id", 8);
-        // data.append("height", '5.9');
-        // data.append("job_id", 1);
-        // data.append("gender", 'Male');
-        // data.append("father_name", 'fathername');
-        // data.append("marital_status_id", 9);
-        // data.append("birth_place", 'birthplace');
-        // data.append("district_id", 8);
-
-        // let allGotas = [];
-        // allGotas.push({'gotra_type' : 'self', 'gotra_name' : 'mitava'});
-        // data.append("gotras", JSON.stringify(allGotas));
 
         console.log("data::::::::::::::::", JSON.stringify(data))
 
@@ -138,7 +144,7 @@ const CreatePost = ({ navigation, route }) => {
 
         }
         else {
-            publisdata()
+            storeData()
         }
 
     }
@@ -158,12 +164,14 @@ const CreatePost = ({ navigation, route }) => {
                     <TouchableOpacity onPress={() => uploaded()}>
                         <Text style={styles.textcontainer}>Upooad pictures (optional) </Text>
                     </TouchableOpacity>
+                    {errors && <Text style={{ color: "red" }}> {errors.image}</Text>}
                 </View>
                 <View style={styles.radiobutton}>
                     <TouchableOpacity onPress={() => setIsSelected("news")} style={{ flexDirection: "row", marginRight: 70 }}>
                         <Fontisto name={"genderless"} size={s(17)} color={`${isSelected == "news" ? "#ffd470" : "black"}`} />
                         <Text style={{ marginLeft: 10, fontSize: 16, color: "black", fontWeight: "500" }}>news</Text>
                     </TouchableOpacity>
+
                     <TouchableOpacity onPress={() => setIsSelected("blog")} style={{ marginLeft: 30, flexDirection: "row" }}>
                         <Fontisto name={"genderless"} size={s(17)} color={`${isSelected !== "news" ? "#ffd470" : "black"}`} />
                         <Text style={{ marginLeft: 10, fontSize: 16, color: "black", fontWeight: "500" }}>blog</Text>
@@ -180,6 +188,8 @@ const CreatePost = ({ navigation, route }) => {
                         placeholderTextColor="black"
                         value={title}
                     />
+                    {errors && <Text style={{ color: "red" }}> {errors.title}</Text>}
+
                     <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600" }}>Description(50-5000 charctors)*</Text>
                     < TextInput
                         style={styles.inputcontainer1}
@@ -191,6 +201,8 @@ const CreatePost = ({ navigation, route }) => {
                         maxLength={5000}
                         value={discription}
                     />
+                    {errors && <Text style={{ color: "red" }}> {errors.discription}</Text>}
+
                     <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600" }}>Source</Text>
                     < TextInput
                         style={styles.inputcontainer}
@@ -202,6 +214,8 @@ const CreatePost = ({ navigation, route }) => {
                     // placeholderTextColor={"#bbb"}
                     // maxLength={10}
                     />
+                    {errors && <Text style={{ color: "red" }}> {errors.author}</Text>}
+
                 </View>
                 <TouchableOpacity onPress={() => handalpublisdata()} style={{ alignSelf: "center", marginTop: 22 }}>
                     <Text style={{ fontSize: 18, fontWeight: "500", borderColor: "#ccc", borderWidth: 1, paddingHorizontal: 12, paddingVertical: 5, borderRadius: 8, backgroundColor: "#ffd470" }}>PUBLISH</Text>

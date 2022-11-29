@@ -21,9 +21,7 @@ const Home = ({ navigation }) => {
     const [showData, setShowData] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false)
     const flatlistRef = useRef();
-    useEffect(() => {
-        setModalVisible(true)
-    }, [])
+
 
     useEffect(() => {
         dataList()
@@ -36,17 +34,16 @@ const Home = ({ navigation }) => {
     }, [isDrawerOpen]);
     useEffect(() => {
         console.log("userData::::::::::::::::::", userData)
-        if (userData && userData.user.contact_id) {
-
+        if (userData && userData.user.contactID) {
             setModalVisible(false)
+            console.log("==================userData && userData.user.contactID",userData && userData.user.contactID)
         }
         else {
             setModalVisible(true)
-
         }
         navigation.addListener('focus', () => {
-            if (userData && userData.user.contact_id) {
-
+            console.log("userData on navigation focus::::::::::::::::::", userData)
+            if (userData && userData.user.contactID) {
                 setModalVisible(false)
             }
             else {
@@ -60,11 +57,12 @@ const Home = ({ navigation }) => {
         setLoader(true)
         ApisService.feedHistory(userData.user.id, pages)
             .then(response => {
-                console.log('response::::', response)
                 if (response.status) {
                     setData(response.data)
                     setLoader(false)
-                    console.log("response.data", response.data)
+                console.log('response::::+++++++++++++++++-----', response)
+
+                    // console.log("response.data", response.data)
                 }
             }).catch(error => {
                 alert(error.message);
@@ -79,7 +77,7 @@ const Home = ({ navigation }) => {
             user_id: userData.user.id,
             description: discription,
         }
-        // console.log("data", data)
+        console.log("data", data)
         ApisService.sharepost(data)
             .then(response => {
                 // console.log("response::::", response)
@@ -128,8 +126,8 @@ const Home = ({ navigation }) => {
                     <TouchableOpacity style={{ marginRight: 15 }} onPress={() => navigation.navigate("Contectlisting")}>
                         <Image
                             style={styles.imagecontener}
-                            source={{ uri: userData.user && userData.user.image && userData.user.image.replace("localhost", "192.168.29.196") }} />
-
+                            source={{ uri:userData.user&&userData.user.image.path.replace("localhost", "192.168.29.196") }} />
+{/* {console.log("userData.user.image.path",userData.user.image.path)} */}
                     </TouchableOpacity>
                 </View>
             ),
@@ -137,19 +135,19 @@ const Home = ({ navigation }) => {
     }
     const handaldateil = (item, data) => {
         if (item.type == "news") {
-            navigation.navigate("NewsDatile", { value: item.id})
-            console.log("*************************")
+            navigation.navigate("NewsDatile", { value: item})
+            // console.log("*************************")
         }
         if (item.type == "event") {
             navigation.navigate("EventDatile", { value: item})
-            console.log("*************************")
+            // console.log("*************************")
         }
         if (item.type == "announcement") {
-            navigation.navigate("AllDetail", { value: item.id})
-            console.log("*************************")
+            navigation.navigate("AllDetail", { Announcedata: item})
+            // console.log("*************************")
         }
     }
-    const Source = ({ item, data }) => {
+    const Source = ({ item }) => {
         return (
             <ScrollView style={styles.maincontainer}>
 
@@ -158,22 +156,24 @@ const Home = ({ navigation }) => {
 
                         <Image
                             style={{ width: 50, height: 50, borderRadius: 100, margin: 10 }}
-                            source={{ uri: item.image.replace("localhost", "192.168.29.196") }} />
+                            source={{ uri:item.image.replace("localhost", "192.168.29.196") }} />
                         <View style={{ alignSelf: "baseline", margin: 15 }}>
-                            <Text style={{ fontSize: 18, fontWeight: "600", color: "#ffd470" }}>{item.title}</Text>
-                            <Text style={{ color: "#ffd470", fontWeight: "600", fontSize: 15 }}>posted on {formatedDateTime(item.created_at, 'DD/MM YYYY')}</Text>
 
+                            {userData.user.id ==item.user_id?<Text style={{ fontSize: 18, fontWeight: "600", color: "#ffd470" }}>{userData.user.name}</Text>
+                            :<Text style={{ fontSize: 18, fontWeight: "600", color: "#ffd470" }}>{item.title}</Text>}
+                            <Text style={{ color: "#ffd470", fontWeight: "600", fontSize: 15 }}>posted on {formatedDateTime(item.created_at, 'DD/MM YYYY')}</Text>
+                        
                         </View>
                     </View>
                     <Text style={{ color: "#ffd470", fontWeight: "500", fontSize: 15, marginLeft: 20, marginBottom: 30, width: 70 }}>{item.description}</Text>
 
-                </View>
+                </View> 
                     :
-                    <TouchableWithoutFeedback style={styles.maininercontainer} onPress={() => handaldateil(item, data)} >
+                    <TouchableWithoutFeedback style={styles.maininercontainer} onPress={() => handaldateil(item)} >
 
                         <Image
-                            style={{ width: 370, height: 200, borderTopLeftRadius: 12, borderTopRightRadius: 12, }}
-                            source={{ uri: item.image.replace("localhost", "192.168.29.196") }} />
+                            style={{ width: "100%", height: 200, borderTopLeftRadius: 12, borderTopRightRadius: 12, }}
+                            source={{ uri: userData&&userData.user.image&&item.image.replace("localhost", "192.168.29.196") }} />
                         <View style={{ flexDirection: "row", marginTop: 10 }}>
                             <Text style={{ color: "#fff", fontWeight: "600", fontSize: 18, width: "15%", height: 50, backgroundColor: "#ffd470", marginLeft: 10, borderRadius: 8, textAlign: "center" }}>{formatedDateTime(item.created_at, 'DD/MM YYYY')}</Text>
                             <Text style={{ color: "#ffd470", fontWeight: "400", fontSize: 20, width: "60%", marginLeft: 15 }}>{item.description}</Text>
@@ -219,8 +219,9 @@ const Home = ({ navigation }) => {
             />
             <View style={{ position: "absolute", width: "100%", bottom: 10 }}>
                 <BottomTab navigation={navigation} />
-            </View>
             <ContectModal setModalVisible={setModalVisible} isModalVisible={isModalVisible} />
+
+            </View>
         </View>
     )
 }
@@ -255,7 +256,8 @@ const styles = StyleSheet.create({
         width: "80%",
         borderRadius: 8,
         backgroundColor: "#fff",
-        height: 50
+        height: 50,
+        color:"black"
     },
 
     maincontainer: {

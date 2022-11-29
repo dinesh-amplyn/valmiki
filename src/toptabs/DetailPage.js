@@ -10,6 +10,8 @@ import * as ApisService from "../providers/apis/apis";
 import DatePicker from 'react-native-date-picker'
 import DropDown from "../componet/DropDown";
 import DropModal from "../componet/DropModal";
+import * as customvilidation from '../providers/shared/Validater';
+
 const DetailPage = ({ navigation, route }) => {
 
     const userData = useSelector(state => state.userData)
@@ -30,11 +32,74 @@ const DetailPage = ({ navigation, route }) => {
     const [eventy, setEventy] = useState(false)
     const [visible, setVisible] = useState(false);
     const [id, setId] = useState()
+    const [errors, setErrors] = useState({});
+
+    const storeData = () => {
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        let errors = validateForm()
+        if (errors == null) {
+            setdata()
+        }
+        else (
+            setErrors(errors)
+        )
+    }
+    const validateForm = () => {
+        let errors = {};
+        if (customvilidation.isEmpty(image)) {
+            errors.image = "image can't be blank"
+        }
+        if (customvilidation.isEmpty(name)) {
+            errors.name = "name can't be blank"
+        }
+        if (customvilidation.isEmpty(indicator)) {
+            errors.indicator = "indicator can't be blank"
+        }
+        // if (customvilidation.isEmpty(startDate)) {
+        //     errors.startDate = "date of birth can't be blank"
+        // }
+        // if (customvilidation.isEmpty(endDate)) {
+        //     errors.endDate = "date of death can't be blank"
+        // }
+        if (customvilidation.isEmpty(village)) {
+            errors.village = "village can't be blank"
+        }
+        if (customvilidation.isEmpty(eventName)) {
+            errors.eventName = "eventName can't be blank"
+        }
+        // if (customvilidation.isEmpty(eventDate)) {
+        //     errors.eventDate = "eventDate can't be blank"
+        // }
+        if (customvilidation.isEmpty(eventPlace)) {
+            errors.eventPlace = "eventPlace can't be blank"
+        }
+        if (customvilidation.isEmpty(mourningFamily)) {
+            errors.mourningFamily = "mourningFamily can't be blank"
+        }
+        if (customvilidation.isEmpty(condolenceMessage)) {
+            errors.condolenceMessage = "condolenceMessage can't be blank"
+        }
+        if (customvilidation.isEmpty(condolenceMessage)) {
+            errors.condolenceMessage = "condolenceMessage can't be blank"
+        }
+        // if (customvilidation.isEmpty(number)) {
+        //     errors.number = "number can't be blank"
+        // }
+        // else if (number.length < 10) {
+        //     errors.number = "number can't be greterthan 10";
+        // }
+        console.log('validation errors::::', errors);
+        if (customvilidation.isEmpty(errors)) {
+            return null;
+        } else {
+            return errors;
+        }
+    }
 
     const datee = new Date()
     useEffect(() => {
         if (route && route.params) {
-            const {image, id, name_indicator, name, date_of_birth, date_of_death, condolence_message, native_village, event_name, event_datetime, event_place, mourning_family, mobiles } = route.params.values
+            const { image, id, name_indicator, name, date_of_birth, date_of_death, condolence_message, native_village, event_name, event_datetime, event_place, mourning_family, mobiles } = route.params.values
             setIndicator(name_indicator)
             console.log("name_indicator", name_indicator)
             setName(name)
@@ -165,7 +230,7 @@ const DetailPage = ({ navigation, route }) => {
             updateimage()
         }
         else {
-            setdata()
+            storeData()
         }
     }
     return (
@@ -180,12 +245,15 @@ const DetailPage = ({ navigation, route }) => {
                         source={{ uri: image ? image.path.replace("localhost", "192.168.29.196") : "https://thumbs.dreamstime.com/b/news-newspapers-folded-stacked-word-wooden-block-puzzle-dice-concept-newspaper-media-press-release-42301371.jpg" }} />
                     {/* {console.log("image", image)} */}
                 </TouchableOpacity>
+                {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.image}</Text>}
+
                 <View>
                     <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(40) }}>दिव्यगत का नाम*</Text>
                     <View style={{ flexDirection: "row", marginTop: 20, justifyContent: "space-evenly" }}>
                         <TouchableOpacity >
                             <DropDown setIndicator={setIndicator} indicator={indicator} />
                         </TouchableOpacity>
+
                         < TextInput
                             style={styles.inputcontainer}
                             placeholder="Name"
@@ -194,15 +262,26 @@ const DetailPage = ({ navigation, route }) => {
                             placeholderTextColor="black"
                             value={name}
                         />
+
                     </View >
+                    <View style={{ flexDirection: "row" }}>
+                        {errors && <Text style={{ color: "red", marginLeft: 15 }}> {errors.indicator}</Text>}
+                        {errors && <Text style={{ color: "red", marginLeft: 15 }}> {errors.name}</Text>}
+                    </View>
                     <Text style={styles.textcontainer}>जन्म-दिवस*</Text>
                     <TouchableOpacity onPress={() => setDatepiker(!datepiker)} style={{ paddingLeft: 20 }}>
-                        <Text style={styles.inertextcontainer}>{startDate ? formatedDateTime(startDate) : "date of birth"}</Text>
+                        <Text style={styles.inertextcontainer}>{startDate ? formatedDateTime(startDate, "YYYY-MM-DD") : "date of birth"}</Text>
+                        {/* {errors && <Text style={{ color: "red", paddingLeft: 20 }}> {errors.startDate}</Text>} */}
+
                     </TouchableOpacity>
+
                     <Text style={styles.textcontainer}>स्वर्गगमन*</Text>
                     <TouchableOpacity style={{ paddingLeft: 20 }} onPress={() => setPaikerdata(!paikerdata)}>
-                        <Text style={styles.inertextcontainer}>{endDate ? formatedDateTime(endDate) : "Date of death"}</Text>
+                        <Text style={styles.inertextcontainer}>{endDate ? formatedDateTime(endDate, "YYYY-MM-DD") : "Date of death"}</Text>
+                        {/* {errors && <Text style={{ color: "red", paddingLeft: 20 }}> {errors.endDate}</Text>} */}
+
                     </TouchableOpacity>
+
                     <Text style={styles.textcontainer}>शोक संदेश*</Text>
                     <View style={{ paddingLeft: 20 }}>
                         < TextInput
@@ -213,6 +292,8 @@ const DetailPage = ({ navigation, route }) => {
                             placeholderTextColor="black"
                             value={condolenceMessage}
                         />
+                        {errors && <Text style={{ color: "red" }}> {errors.condolenceMessage}</Text>}
+
                     </View>
                     <Text style={styles.textcontainer}>मूल निवास*</Text>
                     <View style={{ paddingLeft: 20 }}>
@@ -224,19 +305,26 @@ const DetailPage = ({ navigation, route }) => {
                             placeholderTextColor="black"
                             value={village}
                         />
+                        {errors && <Text style={{ color: "red" }}> {errors.village}</Text>}
+
                     </View>
                     <View style={{ backgroundColor: "#ffd470", marginTop: 20, margin: 8 }}>
                         <Text style={{ fontSize: 20, color: "black", textAlign: "center" }}> शोक कार्यक्रम</Text>
                         <View style={{ backgroundColor: "white", borderWidth: 1, borderColor: "#ffd470", margin: 2, padding: 8 }}>
                             <Text style={styles.textcontainer}>शोक कार्यक्रम*</Text>
-                            <TouchableOpacity style={{ paddingLeft: 20 }}>
+                            <TouchableOpacity style={{ paddingLeft: 20, marginRight: 10 }}>
                                 {/* <Text style={styles.inertextcontainer}>Please Select </Text> */}
                                 <DropModal setEventName={setEventName} eventName={eventName} />
+                                {errors && <Text style={{ color: "red", marginRight: 25 }}> {errors.eventName}</Text>}
+
                             </TouchableOpacity>
+
                             <Text style={styles.textcontainer}>दिनांक*</Text>
                             <TouchableOpacity onPress={() => setEventy(!eventy)} style={{ paddingLeft: 20 }}>
-                                <Text style={styles.inertextcontainer}>{eventDate ? formatedDateTime(eventDate) : "event date"} </Text>
+                                <Text style={styles.inertextcontainer}>{eventDate ? formatedDateTime(eventDate, "YYYY-MM-DD") : "event date"} </Text>
+                                {/* {errors && <Text style={{ color: "red" }}> {errors.eventDate}</Text>} */}
                             </TouchableOpacity>
+
 
                             <Text style={styles.textcontainer}>पता*</Text>
                             <View style={{ paddingLeft: 20 }}>
@@ -248,6 +336,8 @@ const DetailPage = ({ navigation, route }) => {
                                     placeholderTextColor="black"
                                     value={eventPlace}
                                 />
+                                {errors && <Text style={{ color: "red" }}> {errors.eventPlace}</Text>}
+
                             </View>
                         </View>
                     </View>
@@ -266,16 +356,22 @@ const DetailPage = ({ navigation, route }) => {
                                             placeholderTextColor="black"
                                             maxLength={10}
                                             value={i}
+                                            keyboardType="numeric"
+
                                         />
-                                        {index ? <TouchableOpacity onPress={() => remove(i, index)} style={{ position: "absolute", bottom: 8, right: 0 }}>
-                                            <Entypo style={styles.arrowIcon} name={"circle-with-cross"} size={s(30)} color="white" />
+                                        {/* {errors && <Text style={{ color: "red" }}> {errors.number}</Text>} */}
+
+                                        {index ? <TouchableOpacity onPress={() => remove(i, index)} style={{ position: "absolute", right: 15, top: 11 }}>
+                                            <Entypo style={styles.arrowIcon} name={"circle-with-cross"} size={s(42)} color="white" />
                                         </TouchableOpacity>
                                             :
-                                            <TouchableOpacity onPress={() => addmore()} style={{ position: "absolute", bottom: 1, right: 15 }}>
+                                            <TouchableOpacity onPress={() => addmore()} style={{ position: "absolute", right: 16, top: 11 }}>
                                                 <Fontisto style={styles.arrowIcon} name={"plus-a"} size={s(42)} color="white" />
                                             </TouchableOpacity>
                                         }
+
                                     </View>
+
                                 )
                             })}
                         </View>
@@ -290,6 +386,8 @@ const DetailPage = ({ navigation, route }) => {
                             placeholderTextColor="black"
                             value={mourningFamily}
                         />
+                        {errors && <Text style={{ color: "red" }}> {errors.mourningFamily}</Text>}
+
                     </View>
                     <TouchableOpacity onPress={() => handaledata()} style={{ justifyContent: "center", alignItems: "center", margin: 40 }}>
                         <Text style={{ fontSize: 22, borderWidth: 1, width: "35%", textAlign: "center", borderRadius: 10, backgroundColor: "#ffd470", color: "white" }}>सुचित करे</Text>
@@ -299,6 +397,7 @@ const DetailPage = ({ navigation, route }) => {
                         open={datepiker}
                         date={datee}
                         value={startDate}
+                        textColor={"black"}
                         onConfirm={(date) => {
                             setStartDate(date)
                             setDatepiker(!datepiker)
@@ -312,6 +411,7 @@ const DetailPage = ({ navigation, route }) => {
                         modal
                         open={paikerdata}
                         value={endDate}
+                        textColor={"black"}
 
                         date={datee}
                         onConfirm={(date) => {
@@ -328,6 +428,8 @@ const DetailPage = ({ navigation, route }) => {
                         open={eventy}
                         value={eventDate}
                         date={datee}
+                        textColor={"black"}
+
                         onConfirm={(date) => {
                             setEventDate(date)
                             setEventy(!eventy)
@@ -394,6 +496,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
         padding: 15,
         paddingRight: 40,
+        color: "black"
     },
     inputcontainer3: {
         borderWidth: 1,
@@ -409,8 +512,12 @@ const styles = StyleSheet.create({
         flex: 1
     },
     arrowIcon: {
-        borderRadius: 20,
+        borderRadius: 100,
         backgroundColor: "#ffd470",
+        width: 50,
+        padding: 2,
+
+
     }
 })
 export default DetailPage

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { Text, View, StyleSheet, Easing, Image, SafeAreaView, TouchableOpacity, Alert, Animated, TouchableWithoutFeedback } from 'react-native'
+import { Text, View, StyleSheet, Easing, Image, SafeAreaView, TouchableOpacity, Alert, ScrollView, TouchableWithoutFeedback } from 'react-native'
 import { color } from 'react-native-reanimated'
 import { s, ms } from 'react-native-size-matters'
 // import { CSSVariables } from '../theme/variables'
@@ -68,23 +68,23 @@ const CustomDrawer = ({ navigation }) => {
         if (item.icon == "Logout") {
             logoutAlert()
         }
-        if(item.title=="onenote"){
+        if (item.title == "onenote") {
             navigation.navigate('ContectList')
 
         }
-        if(item.title=="pulse"){
+        if (item.title == "pulse") {
             navigation.navigate('profiles')
         }
-        if(item.title=="male"){
+        if (item.title == "male") {
             navigation.navigate('Contectlisting')
         }
-        if(item.title=="share"){
+        if (item.title == "share") {
             navigation.navigate('Feedback')
         }
-        if(item.title=="sun"){
+        if (item.title == "sun") {
             navigation.navigate('Setting')
         }
-        if(item.title=="bell"){
+        if (item.title == "bell") {
             navigation.navigate('GetNotification')
         }
     }
@@ -124,35 +124,39 @@ const CustomDrawer = ({ navigation }) => {
     return (
 
         <SafeAreaView style={styles.container}>
-            < View style={{ backgroundColor: "rgb(43,47,58)", width: "60%", height: "30%", marginLeft: "auto" }}>
+            < View style={{ backgroundColor: "rgb(43,47,58)" }}>
                 <View style={styles.imagescontainer}>
-                    <TouchableOpacity onPress={()=>navigation.navigate("Contectlisting")}>
+                    <TouchableOpacity onPress={() => navigation.navigate("Contectlisting")}>
                         <Image
                             style={styles.tinyLogo}
-                            source={{ uri:userData.user&&userData.user.image&& userData.user.image.replace("localhost", "192.168.29.196") }} />
+                            source={{ uri: userData.user.image.path ?userData.user.image.path : "https://thumbs.dreamstime.com/b/news-newspapers-folded-stacked-word-wooden-block-puzzle-dice-concept-newspaper-media-press-release-42301371.jpg" }} />
+
 
                     </TouchableOpacity>
-                    <Text style={{ fontSize: 20, fontWeight: "800", color: "#fff",alignItems:"center" }}>{userData&&userData.user.name}</Text>
-                </View>
+                        <Text style={{ fontSize: 20, fontWeight: "800", color: "#fff",marginTop:10 }}>{ userData.user.name}</Text>
+                    </View>
+                    
             </View>
-
             {/* <Text style={{ marginRight:10,borderBottomWidth:1,borderColor:"red",width:"100%"}}></Text> */}
             <View style={{ backgroundColor: "rgb(43,47,58)", position: "absolute", bottom: 0, width: "95%", height: "70%", right: 0, borderTopLeftRadius: s(25) }}>
+            <ScrollView  style={{marginBottom:20}}>
+              
                 {drawerData.map((item, index) =>
                     <View key={item.id}>
+                       
+                            <TouchableOpacity onPress={() => GotoTitle(item)} style={styles.drawerItem}>
+                                <Fontisto style={styles.arrowIcon} name={item.title} size={s(20)} color="yellow" />
+                                <Text style={{ fontSize: 18, fontWeight: "600", color: "white", marginLeft: 25 }}>{item.icon}</Text>
 
-                        <TouchableOpacity onPress={() => GotoTitle(item)} style={styles.drawerItem}>
-                            <Fontisto style={styles.arrowIcon} name={item.title} size={s(20)} color="yellow" />
-                            <Text style={{ fontSize: 18, fontWeight: "600", color: "white", marginLeft: 25 }}>{item.icon}</Text>
-
-                        </TouchableOpacity>
-
+                            </TouchableOpacity>
 
                     </View>
                 )
                 }
-            </View>
+                        </ScrollView>
 
+            </View>
+            {/* </ScrollView> */}
         </SafeAreaView >
     )
 }
@@ -174,22 +178,24 @@ const styles = StyleSheet.create({
         // marginRight: s(100),
         // alignItems: "center",
         // justifyContent: "center",
-        marginTop: 20,
-        marginLeft:-20,
-        borderWidth:5,
-        borderColor:"#fff"
-        
+        marginTop: 30,
+        // marginLeft: -20,
+        borderWidth: 5,
+        borderColor: "#fff"
+
     },
     imagescontainer: {
-        top: 0,
+        // top: 0,
         // right:0,
         // justifyContent: "center",
         backgroundColor: "rgb(236,50,105)",
-        height: "100%",
-        borderBottomRightRadius: s(25),
-        position: "absolute",
-        width: "100%",
+        // height: "100%",
+        // borderBottomRightRadius: s(25),
+        // position: "absolute",
+        // width: "100%",
         // backgroundColor:"#fff"
+        // justifyContent:"center",
+        alignItems:"center"
     },
     drawerItem: {
         flexDirection: "row",

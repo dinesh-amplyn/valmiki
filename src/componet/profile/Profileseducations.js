@@ -100,6 +100,8 @@ const Profileseducations = ({ navigation, route, handaldata }) => {
                                     onChangeText={e => inputchang(e, index)}
                                     placeholderTextColor="black"
                                     maxLength={4}
+                                    keyboardType="numeric"
+
                                 // value={i}
                                 />
                                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginTop: s(20) }}>education institute*</Text>

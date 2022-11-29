@@ -36,7 +36,6 @@ const DrawerNavigation = ({ navigation }) => {
                 <Drawer.Screen name="profiles"
                     component={profiles}
                 />
-                
                 <Drawer.Screen name="ContectList"
                     component={ContectList}
                 />

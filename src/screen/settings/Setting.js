@@ -131,7 +131,7 @@ setIsSelected(newarr)
                    ) )}
 
                     {console.log("isSelected", isSelected)}
-                    <TouchableOpacity onPress={() => updatenews()} style={{ alignSelf: "center", marginTop: 22 }}>
+                    <TouchableOpacity onPress={() => updatenews()} style={{ alignSelf: "center", marginTop: 22,marginBottom:20 }}>
                         <Text style={{ fontSize: 20, fontWeight: "500", borderColor: "#fff", borderWidth: 1, paddingHorizontal: 25, paddingVertical: 10, borderRadius: 8, backgroundColor: "#ffd470",color:"#fff" }}>update</Text>
                     </TouchableOpacity>
                 </View>

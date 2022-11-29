@@ -11,10 +11,11 @@ const AllDetail = ({ route, navigation }) => {
     const [data, setData] = useState({})
     const { Announcedata } = route.params
     useEffect(() => {
+        console.log("Announcedata",Announcedata)
         dataview()
     }, []);
     const dataview = () => {
-        ApisService.announcementdeatil(Announcedata)
+        ApisService.announcementdeatil(Announcedata.id)
             .then(response => {
                 // console.log('response::::', response)
                 if (response.status) {
@@ -28,7 +29,7 @@ const AllDetail = ({ route, navigation }) => {
     const deletedata = () => {
         let data = {
             user_id: userData.user.id,
-            id: Announcedata
+            id: Announcedata.id
         }
         ApisService.announcementdelete(data)
             .then(response => {

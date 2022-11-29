@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as customvilidation from '../../providers/shared/Validater';
 const { height, width } = Dimensions.get("window")
 const OtpAuth = ({ route, navigation }) => {
+  
   const dispatch = useDispatch()
   const [otp, setOtp] = useState()
   const [errors, setErrors] = useState(null);

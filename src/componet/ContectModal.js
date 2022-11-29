@@ -79,10 +79,10 @@ const ContectModal = (props) => {
                 if (response.status) {
                     // setData(response)
                     let newuser = userData.user
-                    newuser = { ...newuser, ...response }
+                    newuser = { ...newuser, contactID:response.contactID,name:name,email:email,image:image, }
                     dispatch(setUserData({ ...userData, user: newuser }))
                     setModalVisible(false)
-                    console.log("+++++++++++++++++++++++++++++++++", newuser)
+                    console.log("+++++++++++++++++++++++++++++++++", response)
                     // console.log("response::::", response)
                 }
             }).catch(error => {

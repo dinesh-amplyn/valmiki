@@ -35,8 +35,8 @@ function TopTab({ navigation }) {
     }
     const setHeader = () => {
         navigation.setOptions({
-            title: ' ',
-            headerTitleAlign: 'center',
+            title: ' श्रद्धांजलि',
+            headerTitleAlign: '',
             headerStyle: {
                 backgroundColor: '#ffd470'
             },
@@ -57,7 +57,7 @@ function TopTab({ navigation }) {
     return (<>
         <NavigationContainer independent={true}>
             <Tab.Navigator screenOptions={{
-                tabBarActiveTintColor: "#3CD08E",
+                tabBarActiveTintColor: "#ffd470",
                 tabBarInactiveTintColor: '#bbb',
                 tabBarLabelStyle: { fontSize: 20 },
             }}>

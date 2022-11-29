@@ -32,7 +32,7 @@ const [data,setData]=useState({})
     }
     const dataview = () => {
 
-        ApisService.contacts_view(userData.user.contact_id)
+        ApisService.contacts_view(userData.user.contactID)
             .then(response => {
                 console.log('response::::', response)
                 if (response.status) {
@@ -49,22 +49,23 @@ const [data,setData]=useState({})
                 <View style={styles.ImagePickercantainer} >
                     <Image
                         style={styles.imagecontener}
-                        source={{ uri:data&&data.image&& data.image.replace("localhost", "192.168.29.196") }} />
-                        {console.log("userData.user.image",userData.user.image)}
+                        source={{ uri:userData.user.image.path.replace("localhost", "192.168.29.196") }} />
+                        {console.log("userData.user.image",userData.user.image.path)}
                 </View>
-                <Text style={{ fontSize: 26, color: "#fff", fontWeight: "600", textAlign: "center" }}>{data.name}</Text>
-                <View style={{ flexDirection:"row",alignItems:"center",justifyContent:"center" }}>
+                <Text style={{ fontSize: 26, color: "#fff", fontWeight: "600", textAlign: "center" }}>{userData.user.name}</Text>
+                <View style={{ flexDirection:"row",alignSelf:"center",marginLeft:10,marginTop:10}}>
                 <Fontisto style={styles.arrowIcon} name={"phone"} size={s(18)} color="#ffd470" />
-                <Text style={{ fontSize: 18, fontWeight: "600", color: "white",marginLeft:8 }}>{data.primary_number}</Text>
+                <Text style={{ fontSize: 18, fontWeight: "600", color: "white",marginLeft:8 }}>{userData.user.mobile}</Text>
+       {console.log("userData.user.primary_number",userData.user)}
                 <Fontisto style={styles.arrowIcon} name={"email"} size={s(18)} color="#ffd470" />
-                <Text style={{ fontSize: 18, fontWeight: "600", color: "white",marginLeft:8 }}>{data.email}</Text>
+                <Text style={{ fontSize: 18, fontWeight: "600", color: "white",width:"50%",marginLeft:10 }}>{userData.user.email}</Text>
                 </View>
             </View>
             <NavigationContainer independent={true}>
                 <Tab.Navigator screenOptions={{
                     tabBarActiveTintColor: "#ffd470",
                     tabBarInactiveTintColor: '#bbb',
-                    tabBarLabelStyle: { fontSize: 20 },
+                    tabBarLabelStyle: { fontSize: 18 },
                 }}>
                     <Tab.Screen name="MY INFORMATION" children={() => <Myinformation navigation={navigation} />} />
                     <Tab.Screen name="SUBSCRIPTIONS" children={() => <Subscription navigation={navigation} />} />

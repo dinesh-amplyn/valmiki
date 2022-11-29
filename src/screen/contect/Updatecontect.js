@@ -49,7 +49,7 @@ const[image,setImage]=useState(null);
         if (route && route.params) {
             console.log("route.params", route.params)
 
-            const { image,name, father_husband_name, dob, pincode, marital_status_id, current_address, email, gender, occupation, current_posting, education, native_village, facebook_id, state_id, district_id, primary_number } = route.params.value
+            const {id,image,name, father_husband_name, dob, pincode, marital_status_id, current_address, email, gender, occupation, current_posting, education, native_village, facebook_id, state_id, district_id, primary_number } = route.params.value
             setName(name)
             setFathername(father_husband_name)
             setStartDate(dob)
@@ -67,13 +67,14 @@ const[image,setImage]=useState(null);
             setGander(gender)
             setFacebook(facebook_id)
             setImage({ path: image })
+            setId(id)
         }
     }, [])
 
     const updatenews = () => {
         let data = {
-            user_id: userData.user.id,
-            contact_id: userData.user.contact_id,
+            user_id:userData.user.id,
+            contactID: userData.user.contactID,
             name: name,
             father_husband_name: fathername,
             gender: gander,
@@ -90,7 +91,7 @@ const[image,setImage]=useState(null);
             email:email,
             primary_number:contactnumber,
             facebook_id: facebook,
-             id:userData.user.contact_id,
+             id:id,
             //  image:image
         }
         ApisService.contacts_update(data)
@@ -99,7 +100,7 @@ const[image,setImage]=useState(null);
                 console.log('+++++++++++++++--------',data)
                 console.log("response::::", response)
                 if (response.status) {
-                    navigation.navigate("ContectList")
+                    navigation.navigate("Myinformation")
                 }
             }).catch(error => {
                 alert(error.message);
@@ -148,28 +149,28 @@ const[image,setImage]=useState(null);
     }
 
    
-    const updateimage = () => {
-        let data = new FormData();
-        data.append('image', {
-            name: image.modificationDate + '.jpg',
-            type: image.mime,
-            uri: Platform.OS === 'ios' ? image.path.replace('file://', '') : image.path,
-        });
-        // console.log("data::::::::::::::::", JSON.stringify(data))
-        data.append('user_id', userData.user.id);
-        data.append('id', userData.user.contact_id);
-        ApisService.contacts_image(data)
-            .then(response => {
-                console.log("response::::", data)
-                if (response.status) {
-                    updatenews()
-                    console.log("imagedata::::::::::::::::", response)
+    // const updatenews = () => {
+    //     let data = new FormData();
+    //     data.append('image', {
+    //         name: image.modificationDate + '.jpg',
+    //         type: image.mime,
+    //         uri: Platform.OS === 'ios' ? image.path.replace('file://', '') : image.path,
+    //     });
+    //     // console.log("data::::::::::::::::", JSON.stringify(data))
+    //     data.append('user_id', userData.user.id);
+    //     data.append('id', userData.user.contactID);
+    //     ApisService.contacts_image(data)
+    //         .then(response => {
+    //             console.log("response::::", data)
+    //             if (response.status) {
+    //                 updatenews()
+    //                 console.log("imagedata::::::::::::::::", response)
 
-                }
-            }).catch(error => {
-                alert(error.message);
-            });
-    }
+    //             }
+    //         }).catch(error => {
+    //             alert(error.message);
+    //         });
+    // }
     return (
 
         <ScrollView style={styles.cantainer}>
@@ -347,7 +348,7 @@ const[image,setImage]=useState(null);
                         </View>
                     </View>
                 </View>
-                <TouchableOpacity onPress={() => updateimage()} style={{ justifyContent: "center", alignItems: "center", margin: 40 }}>
+                <TouchableOpacity onPress={() => updatenews()} style={{ justifyContent: "center", alignItems: "center", margin: 40 }}>
 
                     <Text style={{ fontSize: 22, borderWidth: 1, width: "85%", textAlign: "center", borderRadius: 10, backgroundColor: "#ffd470", color: "white" }}>SUBMIT & CONTINUE</Text>
                 </TouchableOpacity>
@@ -359,7 +360,7 @@ const[image,setImage]=useState(null);
                     onConfirm={(date) => {
                         setStartDate(date)
                         setDatepiker(!datepiker)
-                    }}
+                    }}  
                     onCancel={() => {
                         console.log("date")
                     }}

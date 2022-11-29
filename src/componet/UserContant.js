@@ -26,12 +26,12 @@ const EventMulti = (props) => {
                         <View style={{
                             ...styles.modalView
                         }}>
-                            <Text style={{fontSize:17,textAlign:"center"}}>यह सूची वाल्मीकि समाज के नागरिको की जानकारी प्रदान करती है . यहाँ आप अपनी इच्छानुसार अपनी जानकारी समाज से साझां कर सकते है ताकि समाज से संवाद बढ़ सके । सभी से निवेदन है कि सुचनाओ का सदुपयोग करे ।</Text>
+                            <Text style={{fontSize:17,textAlign:"center",color:"black"}}>यह सूची वाल्मीकि समाज के नागरिको की जानकारी प्रदान करती है . यहाँ आप अपनी इच्छानुसार अपनी जानकारी समाज से साझां कर सकते है ताकि समाज से संवाद बढ़ सके । सभी से निवेदन है कि सुचनाओ का सदुपयोग करे ।</Text>
                             <TouchableOpacity onPress={() =>navigation.navigate("FaqFile")}>
-                                <Text style={{fontSize:16,color:"#ffd470",borderWidth:1,borderColor:"#ffd470",marginTop:20,width:"90%",marginLeft:10,textAlign:"center"}}> अधिक जानकारी के लिए यहाँ क्लिक करे</Text>
+                                <Text style={{fontSize:16,color:"#ffd470",borderWidth:1,borderColor:"#ffd470",marginTop:30,width:"90%",marginLeft:10,textAlign:"center"}}> अधिक जानकारी के लिए यहाँ क्लिक करे</Text>
                             </TouchableOpacity>
                             <View style={{ flexDirection: "row" }}>
-                                <Text style={{ marginLeft: "auto", marginRight: 10, fontSize: 18, fontWeight: "bold", padding: 5, borderWidth: 1, borderColor: "#ffd470", color: "#ffd470" ,marginTop:5}} onPress={() => setModalVisible(false)}>ok</Text>
+                                <Text style={{ marginLeft: "auto", marginRight: 15, fontSize: 18, fontWeight: "bold", padding: 5, borderWidth: 1, borderColor: "#ffd470", color: "#ffd470" ,marginTop:20}} onPress={() => setModalVisible(false)}>ok</Text>
                             </View>
                         </View>
                     </TouchableWithoutFeedback>

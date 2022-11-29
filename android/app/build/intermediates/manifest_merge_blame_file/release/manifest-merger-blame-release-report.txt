@@ -1,0 +1,161 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.valmiki"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="31" />
+9-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:4:5-67
+11-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:4:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:5:5-79
+12-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:5:22-76
+13
+14    <queries>
+14-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:9:5-13:15
+15        <intent>
+15-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:10:9-12:18
+16            <action android:name="android.media.action.IMAGE_CAPTURE" />
+16-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:11:13-73
+16-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:11:21-70
+17        </intent>
+18    </queries>
+19
+20    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+20-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:15:5-81
+20-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:15:22-78
+21
+22    <application
+22-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:7:5-29:19
+23        android:name="com.valmiki.MainApplication"
+23-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:8:7-38
+24        android:allowBackup="false"
+24-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:12:7-34
+25        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+25-->[androidx.core:core:1.6.0] C:\Users\Himanshu\.gradle\caches\transforms-3\5c61d7afbc1bcd99cb491da6ba2ee6c1\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
+26        android:icon="@mipmap/ic_launcher"
+26-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:10:7-41
+27        android:label="@string/app_name"
+27-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:9:7-39
+28        android:roundIcon="@mipmap/ic_launcher_round"
+28-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:11:7-52
+29        android:theme="@style/AppTheme"
+29-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:15:7-38
+30        android:usesCleartextTraffic="true" >
+30-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:13:7-42
+31        <activity
+31-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:17:7-28:18
+32            android:name="com.valmiki.MainActivity"
+32-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:18:9-37
+33            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+33-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:20:9-118
+34            android:exported="true"
+34-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:23:9-32
+35            android:label="@string/app_name"
+35-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:19:9-41
+36            android:launchMode="singleTask"
+36-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:21:9-40
+37            android:windowSoftInputMode="adjustPan" >
+37-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:22:9-48
+38            <intent-filter>
+38-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:24:9-27:25
+39                <action android:name="android.intent.action.MAIN" />
+39-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:25:13-65
+39-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:25:21-62
+40
+41                <category android:name="android.intent.category.LAUNCHER" />
+41-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:26:13-73
+41-->C:\lab2\Valmiki\android\app\src\main\AndroidManifest.xml:26:23-70
+42            </intent-filter>
+43        </activity>
+44
+45        <provider
+45-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:18:9-26:20
+46            android:name="com.reactnative.ivpusic.imagepicker.IvpusicImagePickerFileProvider"
+46-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:19:13-94
+47            android:authorities="com.valmiki.provider"
+47-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:20:13-60
+48            android:exported="false"
+48-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:21:13-37
+49            android:grantUriPermissions="true" >
+49-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:22:13-47
+50            <meta-data
+50-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:23:13-25:78
+51                android:name="android.support.FILE_PROVIDER_PATHS"
+51-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:24:17-67
+52                android:resource="@xml/ivpusic_imagepicker_provider_paths" />
+52-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:25:17-75
+53        </provider>
+54
+55        <activity
+55-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:28:9-30:72
+56            android:name="com.yalantis.ucrop.UCropActivity"
+56-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:29:13-60
+57            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+57-->[:react-native-image-crop-picker] C:\lab2\Valmiki\node_modules\react-native-image-crop-picker\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:30:13-69
+58
+59        <receiver
+59-->[:react-native-otp-auto-fill] C:\lab2\Valmiki\node_modules\react-native-otp-auto-fill\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:10:9-17:20
+60            android:name="com.reactnativeotpautofill.OtpBroadcastReceiver"
+60-->[:react-native-otp-auto-fill] C:\lab2\Valmiki\node_modules\react-native-otp-auto-fill\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:11:13-75
+61            android:exported="true"
+61-->[:react-native-otp-auto-fill] C:\lab2\Valmiki\node_modules\react-native-otp-auto-fill\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:12:13-36
+62            android:permission="com.google.android.gms.auth.api.phone.permission.SEND" >
+62-->[:react-native-otp-auto-fill] C:\lab2\Valmiki\node_modules\react-native-otp-auto-fill\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:13:13-87
+63            <intent-filter>
+63-->[:react-native-otp-auto-fill] C:\lab2\Valmiki\node_modules\react-native-otp-auto-fill\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:14:13-16:29
+64                <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
+64-->[:react-native-otp-auto-fill] C:\lab2\Valmiki\node_modules\react-native-otp-auto-fill\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:15:17-94
+64-->[:react-native-otp-auto-fill] C:\lab2\Valmiki\node_modules\react-native-otp-auto-fill\android\build\intermediates\merged_manifest\release\AndroidManifest.xml:15:25-91
+65            </intent-filter>
+66        </receiver>
+67
+68        <activity
+68-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Himanshu\.gradle\caches\transforms-3\248a4b254b4876c3cb169d69362e7f5d\transformed\jetified-play-services-auth-19.2.0\AndroidManifest.xml:23:9-27:75
+69            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+69-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Himanshu\.gradle\caches\transforms-3\248a4b254b4876c3cb169d69362e7f5d\transformed\jetified-play-services-auth-19.2.0\AndroidManifest.xml:24:13-93
+70            android:excludeFromRecents="true"
+70-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Himanshu\.gradle\caches\transforms-3\248a4b254b4876c3cb169d69362e7f5d\transformed\jetified-play-services-auth-19.2.0\AndroidManifest.xml:25:13-46
+71            android:exported="false"
+71-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Himanshu\.gradle\caches\transforms-3\248a4b254b4876c3cb169d69362e7f5d\transformed\jetified-play-services-auth-19.2.0\AndroidManifest.xml:26:13-37
+72            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+72-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Himanshu\.gradle\caches\transforms-3\248a4b254b4876c3cb169d69362e7f5d\transformed\jetified-play-services-auth-19.2.0\AndroidManifest.xml:27:13-72
+73        <!--
+74            Service handling Google Sign-In user revocation. For apps that do not integrate with
+75            Google Sign-In, this service will never be started.
+76        -->
+77        <service
+77-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Himanshu\.gradle\caches\transforms-3\248a4b254b4876c3cb169d69362e7f5d\transformed\jetified-play-services-auth-19.2.0\AndroidManifest.xml:33:9-37:51
+78            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+78-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Himanshu\.gradle\caches\transforms-3\248a4b254b4876c3cb169d69362e7f5d\transformed\jetified-play-services-auth-19.2.0\AndroidManifest.xml:34:13-89
+79            android:exported="true"
+79-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Himanshu\.gradle\caches\transforms-3\248a4b254b4876c3cb169d69362e7f5d\transformed\jetified-play-services-auth-19.2.0\AndroidManifest.xml:35:13-36
+80            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION"
+80-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Himanshu\.gradle\caches\transforms-3\248a4b254b4876c3cb169d69362e7f5d\transformed\jetified-play-services-auth-19.2.0\AndroidManifest.xml:36:13-107
+81            android:visibleToInstantApps="true" />
+81-->[com.google.android.gms:play-services-auth:19.2.0] C:\Users\Himanshu\.gradle\caches\transforms-3\248a4b254b4876c3cb169d69362e7f5d\transformed\jetified-play-services-auth-19.2.0\AndroidManifest.xml:37:13-48
+82
+83        <activity
+83-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\Himanshu\.gradle\caches\transforms-3\45cdf3d9003203bd7d99a3752c1d90db\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:23:9-26:75
+84            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+84-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\Himanshu\.gradle\caches\transforms-3\45cdf3d9003203bd7d99a3752c1d90db\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:24:13-79
+85            android:exported="false"
+85-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\Himanshu\.gradle\caches\transforms-3\45cdf3d9003203bd7d99a3752c1d90db\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:25:13-37
+86            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+86-->[com.google.android.gms:play-services-base:17.5.0] C:\Users\Himanshu\.gradle\caches\transforms-3\45cdf3d9003203bd7d99a3752c1d90db\transformed\jetified-play-services-base-17.5.0\AndroidManifest.xml:26:13-72
+87
+88        <meta-data
+88-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\Himanshu\.gradle\caches\transforms-3\4bfcc3cc7dc077bb4e2d6439b89117bc\transformed\jetified-play-services-basement-17.5.0\AndroidManifest.xml:23:9-25:69
+89            android:name="com.google.android.gms.version"
+89-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\Himanshu\.gradle\caches\transforms-3\4bfcc3cc7dc077bb4e2d6439b89117bc\transformed\jetified-play-services-basement-17.5.0\AndroidManifest.xml:24:13-58
+90            android:value="@integer/google_play_services_version" />
+90-->[com.google.android.gms:play-services-basement:17.5.0] C:\Users\Himanshu\.gradle\caches\transforms-3\4bfcc3cc7dc077bb4e2d6439b89117bc\transformed\jetified-play-services-basement-17.5.0\AndroidManifest.xml:25:13-66
+91    </application>
+92
+93</manifest>

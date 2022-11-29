@@ -10,6 +10,8 @@ import EventType from "../../componet/EventType";
 import DatePicker from 'react-native-date-picker'
 import { getCurrentDateTime, formatedDateTime } from "../../providers/global/global";
 import EventMulti from "../../componet/EventMulti";
+import * as customvilidation from '../../providers/shared/Validater';
+
 const datee = new Date()
 
 const AayojanPage = ({ navigation, route }) => {
@@ -28,8 +30,52 @@ const AayojanPage = ({ navigation, route }) => {
     const [id, setId] = useState()
     const [selectdata, setSelectdata] = useState([])
     const [isModalVisible, setModalVisible] = useState(false);
-    // const {values} = route.params
+    const [errors, setErrors] = useState({});
 
+    const storeData = () => {
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        let errors = validateForm()
+        if (errors == null) {
+            publisdata()
+        }
+        else (
+            setErrors(errors)
+        )
+    }
+    const validateForm = () => {
+        let errors = {};
+        if (customvilidation.isEmpty(image)) {
+            errors.image = "image can't be blank"
+        }
+        if (customvilidation.isEmpty(title)) {
+            errors.title = "title can't be blank"
+        }
+        if (customvilidation.isEmpty(discription)) {
+            errors.discription = "discription can't be blank"
+        }
+        if (customvilidation.isEmpty(address)) {
+            errors.address = "address can't be blank"
+        }
+        if (customvilidation.isEmpty(indicator)) {
+            errors.indicator = "indicator can't be blank"
+        }
+        if (customvilidation.isEmpty(startDate)) {
+            errors.startDate = "startDate can't be blank"
+        }
+        if (customvilidation.isEmpty(endDate)) {
+            errors.endDate = "endDate can't be blank"
+        }
+        if (customvilidation.isEmpty(selectdata)) {
+            errors.selectdata = "selectdata can't be blank"
+        }
+
+        console.log('validation errors::::', errors);
+        if (customvilidation.isEmpty(errors)) {
+            return null;
+        } else {
+            return errors;
+        }
+    }
     useEffect(() => {
         if (route && route.params) {
             const { title, description, image, address, is_public, id, start_date_time, end_date_time, event_type } = route.params.values
@@ -133,7 +179,7 @@ const AayojanPage = ({ navigation, route }) => {
             updateimage()
         }
         else {
-            publisdata()
+            storeData()
         }
     }
     const handeldata = (e) => {
@@ -161,14 +207,18 @@ const AayojanPage = ({ navigation, route }) => {
                 <View style={styles.uploadcontern}>
                     <Fontisto name={"upload"} size={s(17)} color="black" />
                     <TouchableOpacity onPress={() => uploaded()}>
-                        <Text style={styles.textcontainer}>Upooad pictures (optional) </Text>
+                        <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600", marginBottom: 15 }}>Upooad pictures (optional) </Text>
+                        {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.image}</Text>}
+
                     </TouchableOpacity>
                 </View>
 
                 <View style={{ margin: 10 }}>
-                    <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600" }}>Event Type*</Text>
+                    <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600", marginBottom: 15 }}>Event Type*</Text>
                     <EventType indicator={indicator} setIndicator={setIndicator} />
-                    <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600" }}>Event Name*</Text>
+                    {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.indicator}</Text>}
+
+                    <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600", marginTop: 15 }}>Event Name*</Text>
                     < TextInput
                         style={styles.inputcontainer}
                         placeholder="Write event name"
@@ -177,7 +227,9 @@ const AayojanPage = ({ navigation, route }) => {
                         placeholderTextColor="black"
                         value={title}
                     />
-                    <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600" }}>Address*</Text>
+                    {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.title}</Text>}
+
+                    <Text style={{ marginLeft: 10, fontSize: 17, color: "black", fontWeight: "600", marginTop: 15 }}>Address*</Text>
                     < TextInput
                         style={styles.inputcontainer}
                         placeholder="Enter place"
@@ -187,14 +239,20 @@ const AayojanPage = ({ navigation, route }) => {
                         value={address}
 
                     />
+                    {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.address}</Text>}
+
                     <Text style={styles.textcontainer}>Start Date*</Text>
                     <TouchableOpacity style={{ paddingLeft: 20 }} onPress={() => setDatepiker(!datepiker)}>
                         <Text style={styles.inertextcontainer}>{startDate ? formatedDateTime(startDate) : "Enter Start Date"}</Text>
                     </TouchableOpacity>
+                    {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.startDate}</Text>}
+
                     <Text style={styles.textcontainer}>End Date*</Text>
                     <TouchableOpacity style={{ paddingLeft: 20 }} onPress={() => setPaikerdata(!paikerdata)}>
                         <Text style={styles.inertextcontainer}>{endDate ? formatedDateTime(endDate) : "Enter end Date"}</Text>
                     </TouchableOpacity>
+                    {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.endDate}</Text>}
+
                     <View style={styles.containerSwitch}>
                         <Text style={{ fontSize: 19, color: "black", fontWeight: "600" }}>Public</Text>
                         <Switch
@@ -222,6 +280,8 @@ const AayojanPage = ({ navigation, route }) => {
                                 }
                             </TouchableOpacity>
                             <EventMulti handeldata={handeldata} selectdata={selectdata} isModalVisible={isModalVisible} setModalVisible={setModalVisible} />
+                            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.selectdata}</Text>}
+
                         </>
                     }
 
@@ -236,7 +296,10 @@ const AayojanPage = ({ navigation, route }) => {
                         maxLength={5000}
                         value={discription} />
 
+
                     <Text style={{ textAlign: "center", fontSize: 20, color: "black" }}>Upload more Attachment</Text>
+                    {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.discription}</Text>}
+
                     <TouchableOpacity onPress={() => publisevent()} style={{ alignSelf: "center", marginTop: 22 }}>
                         <Text style={{ fontSize: 18, fontWeight: "500", borderColor: "#ccc", borderWidth: 1, paddingHorizontal: 12, paddingVertical: 5, borderRadius: 8, backgroundColor: "#ffd470" }}>ADD EVENT</Text>
                     </TouchableOpacity>
@@ -246,6 +309,8 @@ const AayojanPage = ({ navigation, route }) => {
                     open={datepiker}
                     date={datee}
                     value={startDate}
+                    textColor={"black"}
+
                     onConfirm={(date) => {
                         setStartDate(date)
                         setDatepiker(!datepiker)
@@ -260,6 +325,7 @@ const AayojanPage = ({ navigation, route }) => {
                     open={paikerdata}
                     date={datee}
                     value={endDate}
+                    textColor={"black"}
 
                     onConfirm={(date) => {
                         setEndDate(date)
@@ -287,8 +353,12 @@ const styles = StyleSheet.create({
         borderRadius: s(12)
     },
     textcontainer: {
-        fontWeight: "500",
-        color: "black"
+        marginLeft: 8,
+        fontSize: 17,
+        color: "black",
+        fontWeight: "600",
+        marginTop: 12
+
     },
     uploadcontern: {
         flexDirection: "row",

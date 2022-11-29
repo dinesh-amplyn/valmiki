@@ -10,10 +10,6 @@ const LoginAuth = ({ navigation }) => {
         console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         let errors = validateForm()
         if (errors == null) {
-            // let data = {
-            //     number: number,
-            // }
-
             sendOtp()
         }
         else (

@@ -96,7 +96,7 @@ const UserNews = ({ navigation }) => {
     }
     const Source = ({ item }) => {
         return (
-            <TouchableWithoutFeedback onPress={() => navigation.navigate("NewsDatile", { value: item.id })} style={styles.newscontainer}>
+            <TouchableOpacity onPress={() => navigation.navigate("NewsDatile", { value: item.id })} style={styles.newscontainer}>
                 <Image
                     style={styles.imagecontener}
                     source={{ uri: item.image.replace("localhost", "192.168.29.196") }} />
@@ -107,16 +107,16 @@ const UserNews = ({ navigation }) => {
                     <Text style={{ color: "black", fontWeight: "600", fontSize: 18,marginTop:10 }}>{item.title}</Text>
                 </View>
                 <Text style={{ color: "black", fontWeight: "500", fontSize: 15, alignItems: "baseline", padding: 10 }}>{item.description.substring(0, 288)}</Text>
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
         )
     }
     return (
         <View style={styles.container}>
             <View style={{backgroundColor:"#ffd470"}}>
             <View style={styles.inercontainer}>
-            <Ionicons name="search" size={s(25)} color='black'  />
+            <Ionicons name="search" size={s(25)} color='black' style={{marginLeft:7}} />
                 < TextInput
-                    // style={styles.inputcontainer}
+                    style={styles.inputcontainer}
                     autoCapitalize="none"
                     multiline={true}
                     onChangeText={(e) => setSearchitem(e)}
@@ -151,6 +151,8 @@ const styles = StyleSheet.create({
         fontSize: 17,
         flexDirection:"row",
         marginLeft:23,
+        borderRadius:20,
+        marginBottom:5
     },
     textcontainer: {
         marginTop: s(10),
@@ -204,6 +206,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         fontWeight: "600",
         fontSize: 17,
+        borderRadius:10,
+        color:"black"
+
     },
     orderDetailsText: {
         fontWeight: "600",

@@ -176,7 +176,7 @@ const profiles = ({ navigation }) => {
 
                     <Text style={{ fontSize: 20, color: "#fff", fontWeight: "700", width: "90%", alignSelf: "center", textAlign: "center", marginLeft: 20 }}>उपयुक्त वर - वधू की खोज करने के लिए कृपया अपने लड़के - लड़की की प्रोफाइल को जोड़ें</Text>
                     <View style={{ marginTop: 20 }} >
-                        <TouchableOpacity onPress={() => navigation.navigate("CreateProfiles")} style={{ borderWidth: 0, backgroundColor: "#fff", width: "90%", height: 60, borderRadius: 50, alignSelf: "center", textAlign: "center", justifyContent: "center", alignItems: "center" }}>
+                        <TouchableOpacity onPress={() => navigation.navigate("CreateProfiles")} style={{ borderWidth: 0, backgroundColor: "#fff", width: "90%", height: 60, borderRadius: 50, alignSelf: "center", textAlign: "center", justifyContent: "center", alignItems: "center",margin:10 }}>
                             <Entypo name="add-user" size={s(20)} color='#64e295' />
 
                             <Text style={{ color: "black", fontSize: 15, fontWeight: "normal" }}> add new profile</Text>

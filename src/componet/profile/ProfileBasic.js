@@ -18,12 +18,11 @@ import ProfileGoter from "../../componet/ProfileGoter";
 import State from "../../componet/State";
 import Distices from "../../componet/Distices";
 import { setUserData } from "../../redux/slices/userSlice";
+import * as customvilidation from '../../providers/shared/Validater';
 
 const ProfileBasic = ({ navigation, route, handaldata }) => {
     const dispatch = useDispatch()
-
     const userData = useSelector(state => state.userData)
-
     const [image, setImage] = useState(null)
     const [name, setName] = useState()
     const [startDate, setStartDate] = useState(null);
@@ -51,6 +50,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
     const [fathername, setFathername] = useState();
     const [state, setState] = useState();
     const [district, setDistrict] = useState();
+    const [errors, setErrors] = useState({});
     const [incomedata, setIncomedata] = useState({
         title: null,
         max:null,
@@ -60,6 +60,98 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
         gotra_type: null,
         gotra_name: null
     }])
+    const storeData = () => {
+        console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        let errors = validateForm()
+        if (errors == null) {
+            setdata()
+        }
+        else (
+            setErrors(errors)
+        )
+    }
+    const validateForm = () => {
+        let errors = {};
+        if (customvilidation.isEmpty(image)) {
+            errors.image = "image can't be blank"
+        }
+        if (customvilidation.isEmpty(name)) {
+            errors.name = "name can't be blank"
+        }
+        if (customvilidation.isEmpty(village)) {
+            errors.village = "village can't be blank"
+        }
+        if (customvilidation.isEmpty(birthplace)) {
+            errors.birthplace = "birthplace can't be blank"
+        }
+        if (customvilidation.isEmpty(pincode)) {
+            errors.pincode = "pincode can't be blank"
+        }
+        // if (customvilidation.isEmpty(startDate)) {
+        //     errors.startDate = "startDate can't be blank"
+        // }
+        // if (customvilidation.isEmpty(endDate)) {
+        //     errors.endDate = "endDate can't be blank"
+        // }
+        if (customvilidation.isEmpty(address)) {
+            errors.address = "address can't be blank"
+        }
+        if (customvilidation.isEmpty(contactnumber)) {
+            errors.contactnumber = "contactnumber can't be blank"
+        }
+        if (customvilidation.isEmpty(email)) {
+            errors.email = "email can't be blank"
+        }
+        if (customvilidation.isEmpty(mobile)) {
+            errors.mobile = "mobile can't be blank"
+        }
+        if (customvilidation.isEmpty(currentposting)) {
+            errors.currentposting = "currentposting can't be blank"
+        }
+        if (customvilidation.isEmpty(jobid)) {
+            errors.jobid = "jobid can't be blank"
+        }
+        if (customvilidation.isEmpty(education)) {
+            errors.education = "education can't be blank"
+        }
+        if (customvilidation.isEmpty(heigth)) {
+            errors.heigth = "heigth can't be blank"
+        }
+        if (customvilidation.isEmpty(marital)) {
+            errors.marital = "marital can't be blank"
+        }
+        if (customvilidation.isEmpty(gander)) {
+            errors.gander = "gander can't be blank"
+        }
+        if (customvilidation.isEmpty(fathername)) {
+            errors.fathername = "father name can't be blank"
+        }
+        if (customvilidation.isEmpty(state)) {
+            errors.state = "state can't be blank"
+        }
+        if (customvilidation.isEmpty(district)) {
+            errors.district = "district can't be blank"
+        }
+        if (customvilidation.isEmpty(incomedata)) {
+            errors.incomedata = "incomedata can't be blank"
+        }
+        if (customvilidation.isEmpty(goter)) {
+            errors.goter = "goter can't be blank"
+        }
+        if (customvilidation.isEmpty(contactperson)) {
+            errors.contactperson = "contactperson can't be blank"
+        }
+        if (customvilidation.isEmpty(aboutprofile)) {
+            errors.aboutprofile = "aboutprofile can't be blank"
+        }
+
+        console.log('validation errors::::', errors);
+        if (customvilidation.isEmpty(errors)) {
+            return null;
+        } else {
+            return errors;
+        }
+    }
     useEffect(() => {
         if (route && route.params) {
             console.log("route.params", route.params)
@@ -185,7 +277,7 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
 
         }
         else {
-            setdata()
+            storeData()
         }
 
     }
@@ -296,6 +388,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                     style={styles.imagecontener}
                     source={{ uri: image ? image.path.replace("localhost", "192.168.29.196") : "https://thumbs.dreamstime.com/b/news-newspapers-folded-stacked-word-wooden-block-puzzle-dice-concept-newspaper-media-press-release-42301371.jpg" }} />
             </TouchableOpacity>
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.image}</Text>}
+
             <View>
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(40) }}>Name*</Text>
                 <View style={{ paddingLeft: 20 }}>
@@ -308,6 +402,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         placeholderTextColor="black"
                         value={name}
                     />
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.name}</Text>}
+
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Father Name*</Text>
                 <View style={{ paddingLeft: 20 }}>
@@ -320,22 +416,32 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         placeholderTextColor="black"
                         value={fathername}
                     />
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.fathername}</Text>}
+
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Gender*</Text>
                 <View style={{ paddingLeft: 20, marginTop: 15 }}>
 
                     <TouchableOpacity >
                         {staticdata && <Gander gander={gander} setGander={setGander} data={staticdata.genders} />}
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.gander}</Text>}
+
                     </TouchableOpacity>
                 </View >
                 <Text style={styles.textcontainer}>DOB*</Text>
                 <TouchableOpacity onPress={() => setDatepiker(!datepiker)} style={{ paddingLeft: 20, }}>
                     <Text style={styles.inertextcontainer}>{startDate ? formatedDateTime(startDate, "YYYY-MM-DD") : "DOB"}</Text>
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.startDate}</Text>}
+
                 </TouchableOpacity>
+
                 <Text style={styles.textcontainer}>Birth Time*</Text>
                 <TouchableOpacity style={{ paddingLeft: 20 }} onPress={() => setPaikerdata(!paikerdata)}>
                     <Text style={styles.inertextcontainer}>{endDate ? formatedDateTime(endDate, "HH:mm:ss") : "Birth Time"}</Text>
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.endDate}</Text>}
+
                 </TouchableOpacity>
+
                 <Text style={styles.textcontainer}>Birth Place*</Text>
                 <View style={{ paddingLeft: 20 }}>
                     < TextInput
@@ -346,6 +452,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         placeholderTextColor="black"
                         value={birthplace}
                     />
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.birthplace}</Text>}
+
                 </View>
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Marrital Status*</Text>
                 <View style={{ paddingLeft: 20, marginTop: 15 }}>
@@ -354,6 +462,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         {staticdata && <MartalStaus setMarital={setMarital} marital={marital} data={staticdata.marital_status} />}
                         {/* {console.log("staticdata.marital_status", staticdata && staticdata.marital_status)} */}
                     </TouchableOpacity>
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.marital}</Text>}
+
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Heigth*</Text>
                 <View style={{ paddingLeft: 20, marginTop: 15 }}>
@@ -361,6 +471,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                     <TouchableOpacity >
                         {staticdata && <Height setHeigth={setHeigth} height={heigth} data={staticdata.heights} />}
                     </TouchableOpacity>
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.heigth}</Text>}
+
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Highest Education*</Text>
                 <View style={{ paddingLeft: 20, marginTop: 15 }}>
@@ -368,12 +480,16 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                     <TouchableOpacity >
                         {staticdata && <Education setEducation={setEducation} education={education} data={staticdata.educations} type={"Basic"} />}
                     </TouchableOpacity>
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.education}</Text>}
+
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}> Occupation*</Text>
                 <View style={{ paddingLeft: 20, marginTop: 15 }}>
                     <TouchableOpacity >
                         {staticdata && <ProfileOccupation setJobid={setJobid} jobid={jobid} data={staticdata.jobs} />}
                     </TouchableOpacity>
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.jobid}</Text>}
+
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Income*</Text>
                 <View style={{ paddingLeft: 20, marginTop: 15 }}>
@@ -381,6 +497,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
 
                         <ProfileIncome incomedata={incomedata} setIncomedata={setIncomedata} />
                     </TouchableOpacity>
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.incomedata}</Text>}
+
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Current Posting*</Text>
                 <View style={{ paddingLeft: 20 }}>
@@ -393,6 +511,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         placeholderTextColor="black"
                         value={currentposting}
                     />
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.currentposting}</Text>}
+
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Native village*</Text>
                 <View style={{ paddingLeft: 20 }}>
@@ -405,6 +525,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         placeholderTextColor="black"
                         value={village}
                     />
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.village}</Text>}
+
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Mobile*</Text>
                 <View style={{ paddingLeft: 20 }}>
@@ -417,7 +539,11 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         placeholderTextColor="black"
                         maxLength={10}
                         value={mobile}
+                        keyboardType="numeric"
+
                     />
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.mobile}</Text>}
+
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Email*</Text>
                 <View style={{ paddingLeft: 20 }}>
@@ -430,6 +556,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         placeholderTextColor="black"
                         value={email}
                     />
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.email}</Text>}
+
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>About profile*</Text>
                 <View style={{ paddingLeft: 20 }}>
@@ -445,6 +573,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         multiline
 
                     />
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.aboutprofile}</Text>}
+
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Contect person*</Text>
                 <View style={{ paddingLeft: 20 }}>
@@ -457,6 +587,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         placeholderTextColor="black"
                         value={contactperson}
                     />
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.contactperson}</Text>}
+
                 </View >
                 <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginLeft: s(18), marginTop: s(20) }}>Contect number*</Text>
                 <View style={{ paddingLeft: 20 }}>
@@ -468,9 +600,12 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                         onChangeText={(e) => setContactnumber(e)}
                         placeholderTextColor="black"
                         maxLength={10}
+                        keyboardType="numeric"
 
                         value={contactnumber}
                     />
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.contactnumber}</Text>}
+
                 </View >
 
                 <View style={{ backgroundColor: "#ffd470", marginTop: 20, margin: 8 }}>
@@ -483,6 +618,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                                     <TouchableOpacity>
                                         <ProfileGoter goter={goter} setGoter={setGoter} index={index} />
                                     </TouchableOpacity>
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.goter}</Text>}
+
                                     <Text style={{ fontSize: s(15), color: "black", fontWeight: "400", marginTop: s(20) }}>Goter name*</Text>
                                     < TextInput
                                         style={styles.inputcontainer1}
@@ -491,8 +628,10 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                                         onChangeText={e => inputchang(e, index)}
                                         placeholderTextColor="black"
                                         maxLength={10}
-                                    // value={i}
+                                    value={i}
                                     />
+            {/* {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.goter.type}</Text>} */}
+
                                     {index ? <TouchableOpacity onPress={() => remove(i, index)} style={{ position: "absolute", bottom: 8, right: 0 }}>
                                         <Entypo style={styles.arrowIcon} name={"circle-with-cross"} size={s(30)} color="white" />
                                     </TouchableOpacity>
@@ -515,10 +654,13 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                             {state && <State setStateid={setStateid} stateid={stateid} data={state.states} />}
 
                         </TouchableOpacity>
+            {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.state}</Text>}
+
                         <Text style={styles.textcontainer}>District*</Text>
                         <TouchableOpacity style={{ paddingLeft: 20 }}>
                             <Handaldistce />
                         </TouchableOpacity>
+                        {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.district}</Text>}
 
                         <Text style={styles.textcontainer}>Village/Town/City*</Text>
                         <View style={{ paddingLeft: 20 }}>
@@ -530,6 +672,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                                 placeholderTextColor="black"
                                 value={address}
                             />
+                        {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.address}</Text>}
+
                         </View>
                         <Text style={styles.textcontainer}>Address*</Text>
                         <View style={{ paddingLeft: 20 }}>
@@ -541,6 +685,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                                 placeholderTextColor="black"
                                 value={address}
                             />
+                        {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.address}</Text>}
+
                         </View>
                         <Text style={styles.textcontainer}>Pincode*</Text>
                         <View style={{ paddingLeft: 20 }}>
@@ -552,7 +698,11 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                                 placeholderTextColor="black"
                                 maxLength={6}
                                 value={pincode}
+                                keyboardType="numeric"
+
                             />
+                        {errors && <Text style={{ color: "red", textAlign: "center" }}> {errors.pincode}</Text>}
+
                         </View>
                     </View>
                 </View>
@@ -565,6 +715,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                     open={datepiker}
                     date={datee}
                     value={startDate}
+                    textColor={"black"}
+
                     onConfirm={(date) => {
                         setStartDate(date)
                         setDatepiker(!datepiker)
@@ -579,6 +731,8 @@ const ProfileBasic = ({ navigation, route, handaldata }) => {
                     open={paikerdata}
                     value={endDate}
                     date={datee}
+                    textColor={"black"}
+
                     onConfirm={(date) => {
                         setEndDate(date)
                         setPaikerdata(!paikerdata)

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { KeyboardAvoidingView, ScrollView, View, FlatList, StyleSheet, Text, Alert, Image, Button, Dimensions, TouchableOpacity, TextInput } from 'react-native';
 import { s } from "react-native-size-matters";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import * as ApisService from "../../providers/apis/apis";
 import Entypo from 'react-native-vector-icons/Entypo'
 import { setUserData } from "../../redux/slices/userSlice";
@@ -38,7 +38,7 @@ const Myinformation = ({ navigation }) => {
         {
             id: 5,
             title: "Marital Status:",
-                       subtitle:data && data.marital_status_id? data.marital_status[data.marital_status_id] : 'Unmarried'
+            subtitle: data && data.marital_status_id ? data.marital_status[data.marital_status_id] : 'Unmarried'
 
         },
         {
@@ -90,14 +90,14 @@ const Myinformation = ({ navigation }) => {
     ]
     const dataview = () => {
 
-        ApisService.contacts_view(userData.user.contact_id)
+        ApisService.contacts_view(userData.user.contactID, userData.user.id)
             .then(response => {
                 console.log('response::::', response)
                 if (response.status) {
                     setData(response.data)
-                    let newuser = userData.user
-                    newuser = { ...newuser, ...response.data }
-                    dispatch(setUserData({ ...userData, user: newuser }))
+                    // let newuser = userData.user
+                    // newuser = { ...newuser, ...response.data }
+                    // dispatch(setUserData({ ...userData, user: newuser }))
                     console.log("response.data", response.data)
                 }
             }).catch(error => {
@@ -121,20 +121,18 @@ const Myinformation = ({ navigation }) => {
                     <Text style={{ color: "#aaa", fontWeight: "600", fontSize: 15, width: "50%" }}>{data.primary_number}</Text>
                 </View>
                 <View style={{ borderBottomWidth: 1, borderColor: "#aaa", marginBottom: 70 }} />
-                <TouchableOpacity style={{marginBottom:30,alignItems:"center"}} onPress={()=>navigation.navigate("Updatecontect",{value:data})} >
-                    <Text style={{fontSize:20,color:"#fff",backgroundColor:"#ffd470",borderRadius:20,width:"60%",height:55,textAlign:"center",padding:15}}>
+                <TouchableOpacity style={{ marginBottom: 30, alignItems: "center" }} onPress={() => navigation.navigate("Updatecontect", { value: data })} >
+                    <Text style={{ fontSize: 20, color: "#fff", backgroundColor: "#ffd470", borderRadius: 20, width: "60%", height: 55, textAlign: "center", padding: 15 }}>
                         EDIT INFORMATION
                     </Text>
                 </TouchableOpacity>
             </ScrollView>
         </View>
-
     )
 }
 const styles = StyleSheet.create({
     cantainer: {
         flex: 1,
-
     },
 
     imagecontener: {
